@@ -33,3 +33,20 @@ export const getLastLocation = async (req, res) => {
     res.status(500).json({ msg: "Erro no servidor", error: err.message });
   }
 };
+
+// Consultar todas as localizações de um ônibus
+export const getAllLocations = async (req, res) => {
+  try {
+    const { busId } = req.params;
+
+    const locations = await Location.find({ busId }).sort({ timestamp: -1 });
+
+    if (locations.length === 0) {
+      return res.status(404).json({ msg: "Nenhum dado encontrado." });
+    }
+
+    res.json(locations);
+  } catch (err) {
+    res.status(500).json({ msg: "Erro no servidor", error: err.message });
+  }
+};
