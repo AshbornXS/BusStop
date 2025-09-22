@@ -11,6 +11,11 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(express.json());
 
+// Rota teste
+app.get("/", (req, res) => {
+  res.send("🚍 BuStop API rodando!");
+});
+
 // Rotas
 app.use("/api/locations", locationRoutes);
 
