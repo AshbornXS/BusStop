@@ -50,3 +50,13 @@ export const getAllLocations = async (req, res) => {
     res.status(500).json({ msg: "Erro no servidor", error: err.message });
   }
 };
+
+// Listar todos os onibus
+export const getAllBuses = async (req, res) => {
+  try {
+    const buses = await Location.distinct("busId");
+    res.json(buses);
+  } catch (err) {
+    res.status(500).json({ msg: "Erro no servidor", error: err.message });
+  }
+};

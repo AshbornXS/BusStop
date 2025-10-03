@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import locationRoutes from "./routes/locationRoutes.js";
+import cors from "cors";
 
 dotenv.config();
 connectDB();
@@ -9,7 +10,7 @@ connectDB();
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-app.use(express.json());
+app.use(cors());
 
 // Rota teste
 app.get("/", (req, res) => {
