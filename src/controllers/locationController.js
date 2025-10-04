@@ -1,4 +1,7 @@
 import Location from "../models/Location.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // Receber localização
 export const saveLocation = async (req, res) => {
@@ -58,5 +61,48 @@ export const getAllBuses = async (req, res) => {
     res.json(buses);
   } catch (err) {
     res.status(500).json({ msg: "Erro no servidor", error: err.message });
+  }
+};
+
+// Alinha rotas para a rua
+export const getAlignedLocations = async (req, res) => {
+  try {
+    const { busId } = req.params;
+
+    // 1️⃣ busca dados já salvos (latitude e longitude)
+    const response = await fetch(`https://busstop-b9ov.onrender.com/api/locations/all/${busId}`);
+    const data = await response.json();
+
+    if (!data || data.length === 0) {
+      return res.status(404).json({ error: "Nenhum dado encontrado" });
+    }
+
+    // 2️⃣ transforma os dados em formato aceito pelo OpenRouteService
+    const coordinates = data.map(p => [p.longitude, p.latitude]);
+
+    // 3️⃣ envia requisição ao OpenRouteService
+    const orsResponse = await fetch("https://api.openrouteservice.org/v2/match/driving-car/json", {
+      method: "POST",
+      headers: {
+        "Authorization": `${process.env.ORS_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ coordinates })
+    });
+
+    if (!orsResponse.ok) {
+      const text = await orsResponse.text();
+      console.error("Erro ORS:", text);
+      return res.status(orsResponse.status).send(text);
+    }
+
+    const orsData = await orsResponse.json();
+
+    // 4️⃣ retorna os pontos alinhados ao frontend
+    res.json(orsData);
+
+  } catch (error) {
+    console.error("Erro ao alinhar rota:", error);
+    res.status(500).json({ error: "Erro interno ao alinhar rota" });
   }
 };
