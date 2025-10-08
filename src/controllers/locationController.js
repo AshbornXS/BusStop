@@ -20,7 +20,7 @@ export const saveLocation = async (req, res) => {
       { new: true, upsert: true } // Cria o documento se não existir
     );
 
-    res.status(201).json({ msg: "Localização salva com sucesso!", bus });
+    res.status(201).json({ msg: "Localização salva com sucesso!" });
   } catch (err) {
     res.status(500).json({ msg: "Erro no servidor", error: err.message });
   }
