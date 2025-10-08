@@ -1,4 +1,5 @@
 import Location from "../models/Location.js";
+import Bus from "../models/Location.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -12,10 +13,14 @@ export const saveLocation = async (req, res) => {
       return res.status(400).json({ msg: "Dados incompletos." });
     }
 
-    const location = new Location({ busId, latitude, longitude });
-    await location.save();
+    // Adiciona a nova localização ao array de localizações do ônibus
+    const bus = await Bus.findOneAndUpdate(
+      { busId },
+      { $push: { locations: { latitude, longitude } } },
+      { new: true, upsert: true } // Cria o documento se não existir
+    );
 
-    res.status(201).json({ msg: "Localização salva com sucesso!" });
+    res.status(201).json({ msg: "Localização salva com sucesso!", bus });
   } catch (err) {
     res.status(500).json({ msg: "Erro no servidor", error: err.message });
   }
@@ -26,12 +31,14 @@ export const getLastLocation = async (req, res) => {
   try {
     const { busId } = req.params;
 
-    const location = await Location.findOne({ busId }).sort({ timestamp: -1 });
+    const bus = await Bus.findOne({ busId });
 
-    if (!location)
+    if (!bus || bus.locations.length === 0) {
       return res.status(404).json({ msg: "Nenhum dado encontrado." });
+    }
 
-    res.json(location);
+    const lastLocation = bus.locations[bus.locations.length - 1];
+    res.json(lastLocation);
   } catch (err) {
     res.status(500).json({ msg: "Erro no servidor", error: err.message });
   }
@@ -42,13 +49,13 @@ export const getAllLocations = async (req, res) => {
   try {
     const { busId } = req.params;
 
-    const locations = await Location.find({ busId }).sort({ timestamp: -1 });
+    const bus = await Bus.findOne({ busId });
 
-    if (locations.length === 0) {
+    if (!bus || bus.locations.length === 0) {
       return res.status(404).json({ msg: "Nenhum dado encontrado." });
     }
 
-    res.json(locations);
+    res.json(bus.locations);
   } catch (err) {
     res.status(500).json({ msg: "Erro no servidor", error: err.message });
   }

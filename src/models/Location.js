@@ -1,10 +1,14 @@
 import mongoose from "mongoose";
 
 const locationSchema = new mongoose.Schema({
-  busId: { type: String, required: true },
   latitude: { type: Number, required: true },
   longitude: { type: Number, required: true },
-  timestamp: { type: Date, default: Date.now }
+  timestamp: { type: Date, default: Date.now },
 });
 
-export default mongoose.model("Location", locationSchema);
+const busSchema = new mongoose.Schema({
+  busId: { type: String, required: true, unique: true },
+  locations: [locationSchema], // Array de subdocumentos
+});
+
+export default mongoose.model("Bus", busSchema);

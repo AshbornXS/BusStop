@@ -36,3 +36,5 @@ coverage/
 # Miscellaneous
 *.lock
 /Example/*
+
+busstop.mongodb.js
