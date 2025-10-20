@@ -17,7 +17,12 @@ const userSchema = new mongoose.Schema({
   CPF: { type: String },
   phone: { type: String },
   saldo: { type: Number, default: 0 },
-  isExpired: { type: Boolean, default: false }
+  isExpired: { type: Boolean, default: false },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user',
+  }
 });
 
 userIdMiddleware(userSchema);

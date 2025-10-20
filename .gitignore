@@ -39,3 +39,4 @@ coverage/
 
 busstop.mongodb.js
 *.code-workspace
+uploads/

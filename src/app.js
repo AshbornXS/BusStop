@@ -4,6 +4,7 @@ import connectDB from "./config/db.js";
 import locationRoutes from "./routes/locationRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import fileRoutes from "./routes/fileRoutes.js";
 import cors from "cors";
 
 dotenv.config();
@@ -28,6 +29,9 @@ app.use("/api/auth", authRoutes);
 
 // User
 app.use("/api/user", userRoutes);
+
+// Files
+app.use("/api/file", fileRoutes);
 
 // Iniciando o servidor
 app.listen(PORT, () => {

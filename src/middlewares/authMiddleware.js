@@ -21,28 +21,25 @@ export function userIdMiddleware(schema) {
   });
 }
 
-export const authenticateUser = async (req, res) => {
-  const authHeader = req.headers.authorization;
-  if (!authHeader) {
-    return { error: { status: 401, message: "Authorization header missing" } };
-  }
+const authMiddleware = (req, res, next) => {
+  // Pega o token do header
+  const token = req.header("Authorization")?.replace("Bearer ", "");
 
-  const token = authHeader.split(' ')[1];
+  // Verifica se não há token
   if (!token) {
-    return { error: { status: 401, message: "Token missing" } };
+    return res
+      .status(401)
+      .json({ message: "Nenhum token, autorização negada" });
   }
 
-  let decoded;
+  // Verifica o token
   try {
-    decoded = jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded.user;
+    next();
   } catch (err) {
-    return { error: { status: 401, message: "Invalid token" } };
+    res.status(401).json({ message: "Token não é válido" });
   }
-
-  const user = await User.findById(decoded.userId).select('-password');
-  if (!user) {
-    return { error: { status: 404, message: "User not found" } };
-  }
-
-  return { user };
 };
+
+export default authMiddleware;
