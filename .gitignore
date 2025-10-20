@@ -38,3 +38,4 @@ coverage/
 /Example/*
 
 busstop.mongodb.js
+*.code-workspace

@@ -8,7 +8,7 @@ const locationSchema = new mongoose.Schema({
 
 const busSchema = new mongoose.Schema({
   busId: { type: String, required: true, unique: true },
-  locations: [locationSchema], // Array de subdocumentos
+  locations: [locationSchema],
 });
 
 export default mongoose.model("Bus", busSchema);

@@ -1,16 +1,25 @@
 import mongoose from "mongoose";
+import { userIdMiddleware } from "../middlewares/authMiddleware.js";
 
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log(`MongoDB conectado: ${conn.connection.host}`);
-  } catch (err) {
-    console.error("Erro ao conectar ao MongoDB:", err.message);
-    process.exit(1);
-  }
-};
+const userSchema = new mongoose.Schema({
+  id: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
+  CEP: { type: String },
+  street: { type: String },
+  number: { type: String },
+  complement: { type: String },
+  neighborhood: { type: String },
+  city: { type: String },
+  state: { type: String },
+  CPF: { type: String },
+  phone: { type: String },
+  saldo: { type: Number, default: 0 },
+  isExpired: { type: Boolean, default: false }
+});
 
-export default connectDB;
+userIdMiddleware(userSchema);
+
+export default mongoose.model("User", userSchema);

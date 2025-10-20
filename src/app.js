@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import locationRoutes from "./routes/locationRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import cors from "cors";
 
 dotenv.config();
@@ -20,6 +22,12 @@ app.get("/", (req, res) => {
 
 // Rotas
 app.use("/api/locations", locationRoutes);
+
+// Auth
+app.use("/api/auth", authRoutes);
+
+// User
+app.use("/api/user", userRoutes);
 
 // Iniciando o servidor
 app.listen(PORT, () => {
