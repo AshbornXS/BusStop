@@ -22,16 +22,16 @@ app.get("/", (req, res) => {
 });
 
 // Rotas
-app.use("/api/locations", locationRoutes);
+app.use("/locations", locationRoutes);
 
 // Auth
-app.use("/api/auth", authRoutes);
+app.use("/auth", authRoutes);
 
 // User
-app.use("/api/user", userRoutes);
+app.use("/user", userRoutes);
 
 // Files
-app.use("/api/file", fileRoutes);
+app.use("/files", fileRoutes);
 
 // Iniciando o servidor
 app.listen(PORT, () => {

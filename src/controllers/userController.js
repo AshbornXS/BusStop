@@ -99,7 +99,6 @@ export const isUserExpired = async (req, res) => {
   }
 };
 
-// Admin: Listar todos os usuários
 export const getAllUsers = async (req, res) => {
   try {
     const users = await User.find().select('-password');
@@ -109,7 +108,6 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-// Admin: Atualizar um usuário por ID
 export const updateUser = async (req, res) => {
   const { name, cpf, saldo } = req.body;
   const userId = req.params.id;
@@ -137,7 +135,6 @@ export const updateUser = async (req, res) => {
   }
 };
 
-// Admin: Deletar um usuário por ID
 export const deleteUser = async (req, res) => {
   try {
     const user = await User.findOneAndDelete({ id: req.params.id });

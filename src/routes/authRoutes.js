@@ -5,8 +5,8 @@ import adminMiddleware from "../middlewares/adminMiddleware.js";
 
 const router = Router();
 
-router.post("/register", register); // Registrar novo usuário
-router.post("/login", login);       // Login de usuário
-router.post("/create-admin", [authMiddleware, adminMiddleware], createAdmin); // Rota para um admin criar outro admin
+router.post("/register", register);
+router.post("/login", login);
+router.post("/create-admin", [authMiddleware, adminMiddleware], createAdmin);
 
 export default router;

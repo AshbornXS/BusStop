@@ -27,7 +27,7 @@ export const register = async (req, res) => {
       res.status(500).json({ message: "Error creating user" });
     }
   } catch (error) {
-    console.error("Error during user registration:", error); // Log do erro
+    console.error("Error during user registration:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -97,9 +97,8 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-// Nova função para criar administradores
 export const createAdmin = async (req, res) => {
-  const { name, cpf, email, password } = req.body;
+  const { name, email, password } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -109,10 +108,9 @@ export const createAdmin = async (req, res) => {
 
     user = new User({
       name,
-      cpf,
       email,
       password,
-      role: 'admin' // Cria um usuário com a role 'admin'
+      role: 'admin'
     });
 
     const salt = await bcrypt.genSalt(10);

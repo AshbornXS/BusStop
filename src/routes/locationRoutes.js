@@ -3,8 +3,8 @@ import { saveLocation, getLastLocation, getAllLocations } from "../controllers/l
 
 const router = Router();
 
-router.post("/", saveLocation);          // Receber localização
-router.get("/:busId", getLastLocation);  // Buscar última posição
-router.get("/all/:busId", getAllLocations); // Buscar todas as posições
+router.post("/", saveLocation);
+router.get("/:busId", getLastLocation);
+router.get("/all/:busId", getAllLocations);
 
 export default router;
