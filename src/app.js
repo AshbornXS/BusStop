@@ -18,7 +18,7 @@ app.use(express.json());
 
 // Rota teste
 app.get("/", (req, res) => {
-  res.send("🚍 BuStop API rodando!");
+  res.send("🚍 BusStop API rodando!");
 });
 
 // Rotas
