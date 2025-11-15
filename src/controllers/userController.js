@@ -5,7 +5,7 @@ dotenv.config();
 
 export const getUserProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('-password');
+    const user = await User.findOne({ id: req.user.id }).select('-password');
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -33,8 +33,8 @@ export const updateUserProfile = async (req, res) => {
       return res.status(400).json({ message: "No valid fields to update" });
     }
 
-    const updatedUser = await User.findByIdAndUpdate(
-      req.user.id,
+    const updatedUser = await User.findOneAndUpdate(
+      { id: req.user.id },
       updates,
       { new: true, runValidators: true }
     ).select('-password');
@@ -57,7 +57,7 @@ export const addBalance = async (req, res) => {
       return res.status(400).json({ message: "Amount must be a positive number" });
     }
 
-    const user = await User.findById(req.user.id);
+    const user = await User.findOne({ id: req.user.id });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -73,7 +73,7 @@ export const addBalance = async (req, res) => {
 
 export const isUserExpired = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findOne({ id: req.user.id });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
