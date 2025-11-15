@@ -1,16 +1,14 @@
 import User from "../models/User.js";
 import dotenv from "dotenv";
-import authMiddleware from "../middlewares/authMiddleware.js";
 
 dotenv.config();
 
 export const getUserProfile = async (req, res) => {
   try {
-    const { user, error } = await authMiddleware.authenticateUser(req, res);
-    if (error) {
-      return res.status(error.status).json({ message: error.message });
+    const user = await User.findById(req.user.id).select('-password');
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
-
     res.status(200).json({ user });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
@@ -19,11 +17,6 @@ export const getUserProfile = async (req, res) => {
 
 export const updateUserProfile = async (req, res) => {
   try {
-    const { user, error } = await authMiddleware.authenticateUser(req, res);
-    if (error) {
-      return res.status(error.status).json({ message: error.message });
-    }
-
     const allowedFields = [
       "name", "email", "CEP", "street", "number", "complement",
       "neighborhood", "city", "state", "CPF", "phone", "saldo"
@@ -41,7 +34,7 @@ export const updateUserProfile = async (req, res) => {
     }
 
     const updatedUser = await User.findByIdAndUpdate(
-      user._id,
+      req.user.id,
       updates,
       { new: true, runValidators: true }
     ).select('-password');
@@ -59,14 +52,14 @@ export const updateUserProfile = async (req, res) => {
 
 export const addBalance = async (req, res) => {
   try {
-    const { user, error } = await authMiddleware.authenticateUser(req, res);
-    if (error) {
-      return res.status(error.status).json({ message: error.message });
+    const { amount } = req.body;
+    if (typeof amount !== 'number' || amount <= 0) {
+      return res.status(400).json({ message: "Amount must be a positive number" });
     }
 
-    const { amount } = req.body;
-    if (typeof amount !== 'number') {
-      return res.status(400).json({ message: "Amount must be a number" });
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
 
     user.saldo += amount;
@@ -80,9 +73,9 @@ export const addBalance = async (req, res) => {
 
 export const isUserExpired = async (req, res) => {
   try {
-    const { user, error } = await authMiddleware.authenticateUser(req, res);
-    if (error) {
-      return res.status(error.status).json({ message: error.message });
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
 
     const currentDate = new Date();
