@@ -1,5 +1,4 @@
-import Location from "../models/Location.js";
-import Bus from "../models/Location.js";
+import Bus from "../models/Bus.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -82,7 +81,7 @@ export const getAllLocations = async (req, res) => {
 
 export const getAllBuses = async (req, res) => {
   try {
-    const buses = await Location.distinct("busId");
+    const buses = await Bus.distinct("busId");
     res.json(buses);
   } catch (err) {
     res.status(500).json({ msg: "Erro no servidor", error: err.message });

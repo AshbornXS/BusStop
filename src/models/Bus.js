@@ -9,6 +9,7 @@ const locationSchema = new mongoose.Schema({
 const busSchema = new mongoose.Schema({
   busId: { type: String, required: true, unique: true },
   locations: [locationSchema],
+  lastLocation: locationSchema,
 });
 
 export default mongoose.model("Bus", busSchema);
