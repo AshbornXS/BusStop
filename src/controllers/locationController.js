@@ -24,6 +24,26 @@ export const saveLocation = async (req, res) => {
   }
 };
 
+export const saveLastLocation = async (req, res) => {
+  try {
+    const { busId, latitude, longitude } = req.body;
+
+    if (!busId || !latitude || !longitude) {
+      return res.status(400).json({ msg: "Dados incompletos." });
+    }
+
+    const bus = await Bus.findOneAndUpdate(
+      { busId },
+      { $set: { lastLocation: { latitude, longitude } } },
+      { new: true, upsert: true }
+    );
+
+    res.status(201).json({ msg: "Última localização salva com sucesso!" });
+  } catch (err) {
+    res.status(500).json({ msg: "Erro no servidor", error: err.message });
+  }
+};
+
 export const getLastLocation = async (req, res) => {
   try {
     const { busId } = req.params;
@@ -34,7 +54,10 @@ export const getLastLocation = async (req, res) => {
       return res.status(404).json({ msg: "Nenhum dado encontrado." });
     }
 
-    const lastLocation = bus.locations[bus.locations.length - 1];
+    const lastLocation = bus.lastLocation;
+    if (!lastLocation) {
+      lastLocation = bus.locations[bus.locations.length - 1];
+    }
     res.json(lastLocation);
   } catch (err) {
     res.status(500).json({ msg: "Erro no servidor", error: err.message });
