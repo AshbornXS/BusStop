@@ -1,0 +1,374 @@
+/* Estilização específica para a página inicial (Home) */
+
+/* Configuração do Hero Banner */
+.hero {
+  background: url(assets/images/index.jpg) no-repeat center center/cover;
+  color: white;
+  height: 365px;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+}
+
+.hero .cta-button {
+    background-color: white;
+    color: #FE0026;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.hero .cta-button:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+/* Grid de funcionalidades (Cards de acesso rápido) */
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 60px 40px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  padding: 40px;
+  text-align: center;
+  max-width: 320px;
+  width: 100%;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.card .icon {
+  font-size: 3rem;
+  color: #FE0026;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.card .card-button {
+    background-color: #FE0026;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.card .card-button:hover {
+    background-color: #902323;
+}
+
+/* Estilização da seção explicativa "Como Funciona" */
+.how-it-works {
+  padding: 60px 40px;
+  background-color: #ffffff; 
+  text-align: center;
+}
+.how-it-works h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 40px;
+  color: #333;
+}
+.how-it-works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.step-card {
+  background-color: #f8f9fa; 
+  padding: 30px;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+.step-card:hover {
+  transform: translateY(-5px);
+}
+.step-card .step-icon {
+  font-size: 2.5rem;
+  color: #FE0026;
+  margin-bottom: 15px;
+}
+.step-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.step-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+
+/* Seção Institucional "Sobre Nós" */
+.about-us {
+  padding: 60px 40px;
+  background-color: #f8f9fa; 
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 60px; 
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.about-image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+
+.about-content {
+  flex: 1.2; 
+}
+
+.about-content h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #FE0026;
+  margin-bottom: 20px;
+  display: flex; 
+  align-items: center;
+  gap: 15px; 
+}
+
+.about-content h2 i {
+  font-size: 2.2rem; 
+}
+
+.about-content p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Grid de apresentação da equipe */
+.team-section {
+  padding: 60px 40px;
+  background-color: #ffffff; 
+  text-align: center;
+}
+
+.team-section h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.team-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.team-layout {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-member {
+  background-color: #f8f9fa; 
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  
+  flex-basis: 220px; 
+  flex-grow: 1; 
+  max-width: 250px; 
+}
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.team-member i {
+  font-size: 1.8rem;
+  color: #FE0026;
+  margin-bottom: 15px;
+}
+
+.team-member h4 {
+  font-size: 1rem; 
+  font-weight: 600;
+  color: #333;
+  line-height: 1.4;
+}
+
+
+/* Estilização do componente Accordion para FAQ */
+.faq-section {
+  padding: 60px 40px;
+  background-color: #f8f9fa; 
+}
+
+.faq-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background-color: #ffffff;
+  border: 1px solid #eee; 
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  overflow: hidden; 
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 20px 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+}
+
+.faq-question:hover {
+  color: #FE0026;
+}
+
+.faq-question i {
+  transition: transform 0.3s ease-in-out;
+  color: #FE0026;
+}
+
+.faq-question.open i {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.faq-answer p {
+  padding: 0 25px 20px 25px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.faq-answer.show {
+  max-height: 200px; 
+}
+
+
+/* Adaptações para dispositivos móveis */
+@media (max-width: 768px) {
+  .hero {
+    height: 150px; 
+    padding: 0 20px; 
+    background-position: top center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    text-shadow: none;
+  }
+  .hero p {
+    font-size: 1rem;
+    text-shadow: none;
+  }
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-container {
+    flex-direction: column; 
+    gap: 40px; 
+  }
+  
+  .about-content {
+    margin-bottom: 0;
+  }
+
+  .about-content h2, .faq-section h2, .team-section h2, .how-it-works h2 {
+    font-size: 2rem;
+  }
+
+  .team-layout {
+    flex-direction: column; 
+  }
+  .team-member {
+    max-width: 100%; 
+  }
+
+  .how-it-works-grid {
+    grid-template-columns: 1fr; 
+  }
+}

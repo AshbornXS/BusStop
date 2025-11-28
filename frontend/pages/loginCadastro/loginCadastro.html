@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bustop - Área do Cliente</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100' width='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23FE0026' d='M85.4 37.5c0-2.8-2.2-5-5-5H62.5v-5c0-2.8-2.2-5-5-5H42.5c-2.8 0-5 2.2-5 5v5H19.6c-2.8 0-5 2.2-5 5v30c0 2.8 2.2 5 5 5h2.5v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h30v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h2.5c2.8 0 5-2.2 5-5v-30zm-50 25c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zm37.5 0c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zM62.5 42.5h-25v-15h25v15z'%3E%3C/path%3E%3C/svg%3E">
+    <!-- Folhas de estilo globais e específicas da página -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="loginCadastro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body>
+
+    <div class="brand-logo">
+        <!-- Link para a página inicial -->
+        <a href="../../index.html" class="logo-link">
+            <i class="fa-solid fa-bus"></i>
+            <h1>BusStop</h1>
+        </a>
+    </div>
+
+    <div class="main-container">
+        <!-- Container de formulários para Login e Registro Inicial -->
+        <div class="form-wrapper">
+            <!-- Formulário de Login -->
+            <form id="loginForm" class="auth-form visible">
+                <h1>Acesse sua Conta</h1>
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope input-icon"></i>
+                    <!-- Validação de comprimento para e-mail -->
+                    <input type="email" id="login-email" placeholder="Email" required maxlength="100">
+                </div>
+                <div class="input-group password-group">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <!-- Validação de comprimento para senha -->
+                    <input type="password" id="login-password" placeholder="Senha" required maxlength="100">
+                    <button type="button" class="password-toggle-btn" data-target="login-password" aria-label="Mostrar/Ocultar senha">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <!-- Link para recuperação de senha -->
+                <a href="../esqueceuSenha/esqueceuSenha.html" class="forgot-password">Esqueceu sua senha?</a>
+                <p id="loginError" class="error-message"></p>
+                <button type="submit" class="submit-btn">Entrar</button>
+                
+                <!-- Link para alternância em dispositivos móveis -->
+                <p class="mobile-toggle-link">
+                    Ainda não tem conta? <a href="#cadastro" id="mobile-toggle-register">Cadastre-se</a>
+                </p>
+            </form>
+
+            <!-- Formulário de Cadastro - Passo 1 (Credenciais) -->
+            <form id="registerForm" class="auth-form">
+                <h1>Crie sua Conta</h1>
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope input-icon"></i>
+                    <input type="email" id="register-email" placeholder="Email" required maxlength="100">
+                </div>
+                <div class="input-group password-group">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" id="register-password" placeholder="Crie uma senha" required maxlength="100">
+                    <button type="button" class="password-toggle-btn" data-target="register-password" aria-label="Mostrar/Ocultar senha">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                 <div class="input-group password-group">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" id="register-confirm-password" placeholder="Confirme a senha" required maxlength="100">
+                    <button type="button" class="password-toggle-btn" data-target="register-confirm-password" aria-label="Mostrar/Ocultar senha">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <p id="registerError" class="error-message"></p>
+
+                <p class="terms-agreement">
+                    Ao prosseguir, você concorda com nossos 
+                    <!-- Link para Termos de Serviço -->
+                    <a href="../termos/termos.html" target="_blank">Termos de Serviço</a>.
+                </p>
+
+                <button type="button" id="proceedBtn" class="submit-btn">Prosseguir</button>
+                
+                <!-- Link para alternância em dispositivos móveis -->
+                <p class="mobile-toggle-link">
+                    Já tem conta? <a href="#login" id="mobile-toggle-login">Faça login</a>
+                </p>
+            </form>
+        </div>
+        
+        <!-- Formulário de Cadastro - Passo 2 (Dados Pessoais) -->
+        <div class="personal-info-container">
+             <form id="personalInfoForm" class="auth-form">
+                <button type="button" id="backBtn" class="back-btn" aria-label="Voltar">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <h1>Informações Pessoais</h1>
+                <p class="form-description">Estamos quase lá. Complete seus dados pessoais.</p>
+                
+                <div class="form-grid">
+                    <!-- Linha 1: Identificação básica -->
+                    <div class="input-group">
+                        <i class="fa-solid fa-user input-icon"></i>
+                        <input type="text" id="nome" placeholder="Nome completo" required maxlength="60">
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-id-card input-icon"></i>
+                        <input type="text" id="cpf" placeholder="CPF (Opcional)" maxlength="14">
+                    </div>
+                    
+                    <!-- Linha 2: Contato e Localização inicial -->
+                    <div class="input-group">
+                        <i class="fa-solid fa-phone input-icon"></i>
+                        <input type="tel" id="telefone" placeholder="+55 (Opcional)" maxlength="19">
+                    </div>
+                     <div class="input-group">
+                        <i class="fa-solid fa-location-dot input-icon"></i>
+                        <input type="text" id="cep" placeholder="CEP (Opcional)" maxlength="9">
+                    </div>
+
+                    <!-- Linha 3: Endereço (Preenchido via API) -->
+                    <div class="input-group">
+                        <i class="fa-solid fa-road input-icon"></i>
+                        <input type="text" id="endereco" placeholder="Endereço" disabled>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-map-pin input-icon"></i>
+                        <input type="text" id="bairro" placeholder="Bairro" disabled>
+                    </div>
+
+                    <!-- Linha 4: Cidade/Estado (Preenchido via API) -->
+                    <div class="input-group">
+                        <i class="fa-solid fa-city input-icon"></i>
+                        <input type="text" id="cidade" placeholder="Cidade" disabled>
+                    </div>
+                     <div class="input-group">
+                        <i class="fa-solid fa-map input-icon"></i>
+                        <input type="text" id="estado" placeholder="Estado" maxlength="2" disabled>
+                    </div>
+
+                    <!-- Linha 5: Detalhes do endereço -->
+                     <div class="input-group">
+                         <i class="fa-solid fa-hashtag input-icon"></i>
+                         <input type="text" id="numero" placeholder="Número (Opcional)" maxlength="10">
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-building input-icon"></i>
+                        <input type="text" id="complemento" placeholder="Complemento (Opcional)" maxlength="30">
+                    </div>
+                </div>
+                <p id="personalInfoError" class="error-message"></p>
+                <button type="submit" class="submit-btn">Finalizar Cadastro</button>
+            </form>
+        </div>
+
+        <!-- Tela de Feedback de Sucesso -->
+        <div id="successMessage" class="success-container" style="display: none;">
+            <div class="success-content">
+                <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+                <h1>Cadastro Concluído!</h1>
+                <p>Sua conta foi criada com sucesso. Você será redirecionado em instantes.</p>
+                <div class="spinner"></div>
+            </div>
+        </div>
+
+
+        <!-- Painel Deslizante (Overlay) para transição Login/Cadastro -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <h1 id="overlay-title">Olá!</h1>
+                <p id="overlay-text">Ainda não tem uma conta? Cadastre-se agora e facilite sua jornada.</p>
+                <button id="toggleBtn" class="overlay-btn">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lógica de funcionamento da página -->
+    <script src="loginCadastro.js"></script>
+    
+</body>
+</html>

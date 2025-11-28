@@ -1,0 +1,94 @@
+/* Definições de estilo exclusivas para a página de Termos de Serviço */
+
+.hero-terms {
+  /* Configuração do banner principal com gradiente sobreposto */
+  background: linear-gradient(rgba(166, 40, 40, 0.8), rgba(140, 35, 35, 0.8)), url(https://placehold.co/1920x1080/FE0026/ffffff?text=Termos+de+Servi%C3%A7o) no-repeat center center/cover;
+  
+  /* Espaçamento e tipografia do banner */
+  padding: 60px 40px; 
+  text-align: center;
+  color: #ffffff; 
+  border-bottom: none; 
+}
+.hero-text h1 { 
+  font-size: 2.5rem; 
+  font-weight: 700; 
+  margin-bottom: 10px; 
+  color: #ffffff; 
+}
+.hero-text p { 
+  font-size: 1.1rem; 
+  max-width: 600px; 
+  margin: 0 auto; 
+  color: #f0f0f0; 
+  opacity: 0.9;
+}
+
+/* Área de conteúdo principal */
+.content-section { 
+  padding: 40px 20px; 
+}
+.terms-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 40px 50px;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  /* Posicionamento para sobreposição visual no banner */
+  margin-top: -50px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Tipografia dos títulos e parágrafos do documento legal */
+.terms-card h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #FE0026;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+.terms-card h2:first-of-type {
+  margin-top: 0;
+}
+
+.terms-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.terms-card p {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.terms-card ul {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+.terms-card ul li {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+/* Adaptações de layout para dispositivos móveis */
+@media (max-width: 768px) {
+  .terms-card {
+    padding: 30px 25px;
+    margin-top: -30px; 
+  }
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  .hero-terms {
+    padding: 50px 20px; 
+  }
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Admin - BusStop</title>
+  <!-- Configuração do Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100' width='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23FE0026' d='M85.4 37.5c0-2.8-2.2-5-5-5H62.5v-5c0-2.8-2.2-5-5-5H42.5c-2.8 0-5 2.2-5 5v5H19.6c-2.8 0-5 2.2-5 5v30c0 2.8 2.2 5 5 5h2.5v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h30v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h2.5c2.8 0 5-2.2 5-5v-30zm-50 25c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zm37.5 0c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zM62.5 42.5h-25v-15h25v15z'%3E%3C/path%3E%3C/svg%3E">
+  <!-- Importação de estilos globais e específicos -->
+  <link rel="stylesheet" href="../../assets/css/global.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body>
+  <!-- Container do Menu Mobile (injetado via JS) -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay" style="display: none;"></div>
+  <div class="mobile-nav-menu" id="mobile-nav-menu">
+    <!-- Conteúdo dinâmico -->
+  </div>
+
+  <!-- Cabeçalho de Navegação -->
+  <header>
+    <div class="logo">
+      <i class="fa-solid fa-bus"></i>
+      <span>BusStop</span>
+    </div>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <div class="dropdown" id="servicos-dropdown">
+        <button class="dropdown-toggle" id="servicos-btn">
+          Serviços <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-content" id="servicos-content">
+          <a href="../recarga/recarga.html">Recarga de Cartão</a>
+          <a href="../renovacao/renovacao.html">Renovação de Cartão</a>
+        </div>
+      </div>
+      <a href="../linhas/linhas.html">Linhas</a>
+    </nav>
+    <div class="right-nav">
+      <div class="user-icon-wrapper dropdown" id="user-btn">
+        <div class="user-icon">
+          <i class="fa-regular fa-user"></i>
+        </div>
+        <div class="dropdown-content" id="user-content">
+          <!-- Conteúdo dinâmico -->
+        </div>
+      </div>
+    </div>
+    
+    <!-- Botão toggle para menu mobile -->
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
+
+  <main>
+    <section class="content-section">
+      
+      <!-- Painel de Gestão de Documentos -->
+      <div class="admin-card" id="document-management">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-file-signature"></i> Documentos Enviados</h2>
+          <p>Visualize os documentos enviados pelos usuários.</p>
+          
+          <div class="search-bar">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="search-documents" placeholder="Buscar por Nome do Arquivo ou ID do Usuário...">
+          </div>
+        </div>
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Documentos</th>
+                <th>Tamanho</th>
+                <th>Data</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody id="documents-table-body">
+              <!-- Linhas da tabela injetadas via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Painel de Gestão de Usuários -->
+      <div class="admin-card" id="user-management">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-users-cog"></i> Gestão de Usuários</h2>
+          <p>Visualize, edite ou remova usuários do sistema.</p>
+
+          <div class="search-bar">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="search-users" placeholder="Buscar por E-mail ou CPF...">
+          </div>
+        </div>
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>E-mail</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Saldo</th>
+                <th>ID do Usuário</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body">
+              <!-- Linhas da tabela injetadas via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Rodapé -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-column footer-about">
+        <div class="logo">
+          <i class="fa-solid fa-bus"></i>
+          <span>BusStop</span>
+        </div>
+        <p>Simplificando sua mobilidade urbana. Recarregue, renove e planeje suas rotas, tudo em um só lugar.</p>
+      </div>
+      <div class="footer-column footer-links">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../recarga/recarga.html">Recarga</a></li>
+          <li><a href="../renovacao/renovacao.html">Renovação</a></li>
+          <li><a href="../linhas/linhas.html">Linhas</a></li>
+          <li><a href="../termos/termos.html">Termos de Serviço</a></li>
+        </ul>
+      </div>
+      <div class="footer-column footer-social">
+        <h4>Siga-nos</h4>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 BusStop. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Modal: Edição de Usuário -->
+  <div id="edit-user-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="modal-close-edit">&times;</button>
+      <h3>Editar Usuário</h3>
+      <form id="edit-user-form">
+        <input type="hidden" id="edit-user-id"> 
+        <div class="input-group">
+          <label for="edit-user-name">Nome</label>
+          <input type="text" id="edit-user-name" required>
+        </div>
+        <div class="input-group">
+          <label for="edit-user-cpf">CPF (sem máscara)</label>
+          <input type="text" id="edit-user-cpf" maxlength="11">
+        </div>
+        <div class="input-group">
+          <label for="edit-user-saldo">Saldo (Ex: 10.50)</label>
+          <input type="text" id="edit-user-saldo">
+        </div>
+        <button type="submit" class="action-btn save-btn">Salvar Alterações</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Confirmação de Exclusão de Usuário -->
+  <div id="delete-confirm-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content small">
+      <button class="modal-close-btn" id="modal-close-delete">&times;</button>
+      <h3>Confirmar Exclusão</h3>
+      <p>Você tem certeza que deseja excluir o usuário <strong id="delete-user-info"></strong>? Esta ação não pode ser desfeita.</p>
+      <div class="modal-actions">
+        <button class="action-btn cancel-btn" id="delete-cancel-btn">Cancelar</button>
+        <button class="action-btn deny-btn" id="delete-confirm-btn">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Visualização de Documento -->
+  <div id="view-doc-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content doc-viewer">
+      <button class="modal-close-btn" id="modal-close-view">&times;</button>
+      <h3 id="view-doc-title">Visualizar Documento</h3>
+      <div class="doc-viewer-body">
+        <div id="doc-content-loader" class="spinner-container">
+          <div class="spinner"></div>
+          <p>Carregando documento...</p>
+        </div>
+        <img id="doc-image-preview" src="" alt="Preview do Documento" style="display: none; max-width: 100%; border-radius: 8px;">
+        <iframe id="doc-pdf-preview" src="" style="display: none; width: 100%; height: 60vh; border: 1px solid #ccc; border-radius: 8px;"></iframe>
+        <p id="doc-view-error" style="color: red; display: none;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Confirmação de Exclusão de Documento -->
+  <div id="delete-doc-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content small">
+      <button class="modal-close-btn" id="modal-close-delete-doc">&times;</button>
+      <h3>Confirmar Exclusão</h3>
+      <p>Você tem certeza que deseja excluir o arquivo <strong id="delete-doc-info"></strong>? Esta ação não pode ser desfeita.</p>
+      <div class="modal-actions">
+        <button class="action-btn cancel-btn" id="delete-doc-cancel-btn">Cancelar</button>
+        <button class="action-btn deny-btn" id="delete-doc-confirm-btn">Excluir Arquivo</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../assets/js/global.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

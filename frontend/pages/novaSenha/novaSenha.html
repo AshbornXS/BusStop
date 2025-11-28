@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Nova Senha - BusStop</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100' width='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23FE0026' d='M85.4 37.5c0-2.8-2.2-5-5-5H62.5v-5c0-2.8-2.2-5-5-5H42.5c-2.8 0-5 2.2-5 5v5H19.6c-2.8 0-5 2.2-5 5v30c0 2.8 2.2 5 5 5h2.5v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h30v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h2.5c2.8 0 5-2.2 5-5v-30zm-50 25c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zm37.5 0c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zM62.5 42.5h-25v-15h25v15z'%3E%3C/path%3E%3C/svg%3E">
+    <!-- Importação de estilos específicos e biblioteca de ícones -->
+    <link rel="stylesheet" href="novaSenha.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body>
+
+    <!-- Cabeçalho da marca -->
+    <div class="brand-logo">
+        <!-- Link para a página inicial -->
+        <a href="../../index.html" class="logo-link">
+            <i class="fa-solid fa-bus"></i>
+            <h1>BusStop</h1>
+        </a>
+    </div>
+
+    <!-- Container do formulário de redefinição -->
+    <div class="reset-password-container">
+        <form id="resetPasswordForm" class="auth-form">
+            <h1>Crie uma Nova Senha</h1>
+            <p class="form-description">Digite sua nova senha abaixo. Lembre-se de usar uma senha forte.</p>
+            
+            <!-- Input para nova senha -->
+            <div class="input-group password-group">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input type="password" id="new-password" placeholder="Nova Senha" required maxlength="100">
+              <button type="button" class="password-toggle-btn" data-target="new-password" aria-label="Mostrar/Ocultar senha">
+                  <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+            
+            <!-- Input para confirmação de senha -->
+            <div class="input-group password-group">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input type="password" id="confirm-password" placeholder="Confirmar Nova Senha" required maxlength="100">
+               <button type="button" class="password-toggle-btn" data-target="confirm-password" aria-label="Mostrar/Ocultar senha">
+                  <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+            
+            <p id="resetError" class="error-message"></p>
+            <button type="submit" class="submit-btn">Salvar Nova Senha</button>
+            
+            <!-- Navegação de retorno ao login -->
+            <a href="../loginCadastro/loginCadastro.html#login" class="back-to-login">
+                <i class="fa-solid fa-arrow-left"></i> Voltar para o Login
+            </a>
+        </form>
+    </div>
+
+    <!-- Script de comportamento da página -->
+    <script src="novaSenha.js"></script>
+</body>
+</html>

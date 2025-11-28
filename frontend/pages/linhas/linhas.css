@@ -1,0 +1,178 @@
+/* Definição de estilos exclusivos para a página de Linhas */
+
+/* Configuração do banner principal (Hero) */
+.hero {
+  background: url(../../assets/images/linhas.jpg) no-repeat center center/cover;
+  height: 280px;
+  padding: 0 40px;
+  text-align: center;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-text h1 { font-size: 3rem; font-weight: 700; margin-bottom: 10px; }
+.hero-text p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
+
+/* Layout da seção de conteúdo e cards de seleção */
+.content-section { padding: 60px 20px; }
+.lines-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.lines-header { margin-bottom: 40px; }
+.lines-header h2 { font-size: 2.5rem; font-weight: 600; color: #333; margin-bottom: 10px; }
+.lines-header p { font-size: 1.1rem; color: #666; }
+
+/* Grade de cards para seleção de rotas */
+.line-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.line-card {
+  background-color: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.line-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border-color: #FE0026;
+}
+.line-card.selected {
+  background-color: #FE0026;
+  color: white;
+  border-color: #FE0026;
+  box-shadow: 0 8px 20px rgba(166, 40, 40, 0.25);
+  transform: translateY(-5px);
+}
+.line-card .line-number {
+  background-color: rgba(166, 40, 40, 0.1);
+  color: #FE0026;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.line-card.selected .line-number {
+  background-color: white;
+  color: #FE0026;
+}
+.line-card .line-name {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Container e estilização do mapa interativo */
+#map-container {
+  margin-top: 40px;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+  border: 1px solid #eee;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  display: none;
+  position: relative; 
+}
+
+#map {
+  width: 100%;
+  height: 500px;
+  background-color: #f0f0f0;
+}
+
+/* Overlay de carregamento do mapa */
+#map-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(248, 249, 250, 0.9); 
+  color: #888;
+}
+#map-loader p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 15px;
+}
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #FE0026;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Marcador personalizado para o ônibus no mapa */
+.bus-icon {
+  background-color: white;
+  border: 2px solid #FE0026;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.bus-icon i {
+  color: #FE0026;
+  font-size: 14px;
+}
+.leaflet-marker-icon .bus-icon {
+  background: white;
+}
+
+/* Ocultação de elementos de controle de rota padrão */
+.leaflet-routing-container {
+  display: none;
+}
+
+/* Media Queries para adaptação em telas menores (Tablets/Mobile) */
+@media (max-width: 768px) {
+  .hero {
+    height: 150px; 
+    padding: 0 20px;
+    background-position: top center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .lines-header h2 { font-size: 2rem; }
+  .line-cards-container { grid-template-columns: 1fr; }
+  
+  .hero-text h1 { font-size: 2.5rem; } 
+}

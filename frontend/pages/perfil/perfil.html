@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Perfil - BusStop</title>
+  <!-- Favicon SVG otimizado -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100' width='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23FE0026' d='M85.4 37.5c0-2.8-2.2-5-5-5H62.5v-5c0-2.8-2.2-5-5-5H42.5c-2.8 0-5 2.2-5 5v5H19.6c-2.8 0-5 2.2-5 5v30c0 2.8 2.2 5 5 5h2.5v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h30v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h2.5c2.8 0 5-2.2 5-5v-30zm-50 25c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zm37.5 0c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zM62.5 42.5h-25v-15h25v15z'%3E%3C/path%3E%3C/svg%3E">
+  <!-- Importação de folhas de estilo globais e locais -->
+  <link rel="stylesheet" href="../../assets/css/global.css" />
+  <link rel="stylesheet" href="perfil.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Container para o menu lateral em dispositivos móveis -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay" style="display: none;"></div>
+  <div class="mobile-nav-menu" id="mobile-nav-menu">
+    <!-- Conteúdo injetado dinamicamente -->
+  </div>
+
+  <!-- Cabeçalho de navegação principal -->
+  <header>
+    <div class="logo">
+      <i class="fa-solid fa-bus"></i>
+      <span>BusStop</span>
+    </div>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <div class="dropdown" id="servicos-dropdown">
+        <button class="dropdown-toggle" id="servicos-btn">
+          Serviços <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-content" id="servicos-content">
+          <a href="../recarga/recarga.html">Recarga de Cartão</a>
+          <a href="../renovacao/renovacao.html">Renovação de Cartão</a>
+        </div>
+      </div>
+      <a href="../linhas/linhas.html">Linhas</a>
+    </nav>
+    <div class="right-nav">
+      <div class="user-icon-wrapper dropdown" id="user-btn">
+        <div class="user-icon">
+          <i class="fa-regular fa-user"></i>
+        </div>
+        <div class="dropdown-content" id="user-content">
+          <!-- Conteúdo injetado dinamicamente -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Botão toggle para menu mobile -->
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
+
+  <main>
+    <section class="content-section">
+      <!-- Mensagem de bloqueio para usuários não autenticados -->
+      <div id="logged-out-message" class="main-card access-restricted" style="display: none;">
+        <div class="restricted-icon"><i class="fa-solid fa-lock"></i></div>
+        <h2>Acesso Restrito</h2>
+        <p>Por favor, faça login para visualizar e editar seus dados de perfil.</p>
+        <a href="../loginCadastro/loginCadastro.html#login" class="restricted-action-btn">Fazer Login</a>
+      </div>
+      
+      <!-- Área de conteúdo para usuários autenticados -->
+      <div id="logged-in-content" class="main-card" style="display: none;">
+        
+        <!-- Resumo de informações (Carteirinha e Saldo) -->
+        <div class="info-header">
+            <div class="display-group">
+              <p class="display-title">Nº da Carteirinha</p>
+              <div class="input-display">
+                <i class="fa-solid fa-address-card"></i>
+                <input type="text" id="carteirinha" disabled>
+              </div>
+              <div class="card-status-line" id="card-status-line">
+                <span id="card-status-text">Pendente</span>
+              </div>
+            </div>
+            <div class="display-group">
+              <p class="display-title">Saldo Atual</p>
+              <div class="input-display">
+                <i class="fa-solid fa-wallet"></i>
+                <input type="text" id="balance-amount" disabled>
+              </div>
+            </div>
+        </div>
+
+        <!-- Formulário de Edição de Perfil -->
+        <form id="profile-form" novalidate>
+          <!-- Seção de Dados Pessoais -->
+          <div class="step">
+            <div class="step-header">
+              <div class="step-icon"><i class="fa-solid fa-user-pen"></i></div>
+              <h2 class="step-title">Dados Pessoais</h2>
+            </div>
+            <p class="step-description">As suas informações de identificação e contacto.</p>
+            <div class="form-grid" id="dados-pessoais-grid">
+              
+              <div class="input-group full-width">
+                <i class="fa-solid fa-envelope input-icon"></i>
+                <input type="email" id="email" placeholder="E-mail" required disabled maxlength="100">
+              </div>
+
+              <div class="input-group">
+                <i class="fa-solid fa-user input-icon"></i>
+                <input type="text" id="nome" placeholder="Nome completo" required disabled maxlength="60">
+              </div>
+               
+              <div class="input-group">
+                <i class="fa-solid fa-id-card input-icon"></i>
+                <input type="text" id="cpf" placeholder="CPF" disabled maxlength="14">
+              </div>
+              
+              <div class="input-group">
+                <i class="fa-solid fa-phone input-icon"></i>
+                <input type="tel" id="telefone" placeholder="+55 (XX) XXXXX-XXXX" disabled maxlength="19">
+              </div>
+
+              <div class="input-group">
+                <i class="fa-solid fa-location-dot input-icon"></i>
+                <input type="text" id="cep" placeholder="CEP" maxlength="9" disabled>
+              </div>
+              
+              <div class="input-group">
+                <i class="fa-solid fa-road input-icon"></i>
+                <input type="text" id="endereco" placeholder="Endereço" disabled>
+              </div>
+
+              <div class="input-group">
+                <i class="fa-solid fa-map-pin input-icon"></i>
+                <input type="text" id="bairro" placeholder="Bairro" disabled>
+              </div>
+
+              <div class="input-group">
+                <i class="fa-solid fa-hashtag input-icon"></i>
+                <input type="text" id="numero" placeholder="Número" disabled maxlength="10">
+              </div>
+              
+              <div class="input-group">
+                <i class="fa-solid fa-building input-icon"></i>
+                <input type="text" id="complemento" placeholder="Complemento" disabled maxlength="30">
+              </div>
+              
+              <div class="input-group">
+                <i class="fa-solid fa-city input-icon"></i>
+                <input type="text" id="cidade" placeholder="Cidade" disabled>
+              </div>
+               
+              <div class="input-group">
+                <i class="fa-solid fa-map input-icon"></i>
+                <input type="text" id="estado" placeholder="Estado" maxlength="2" disabled>
+              </div>
+
+            </div>
+            <p id="personal-message" class="form-message"></p>
+            <div class="action-buttons">
+              <button type="button" id="edit-personal-btn" class="action-btn edit-btn">Editar</button>
+              <button type="button" id="save-personal-btn" class="action-btn save-btn" style="display: none;">Salvar Alterações</button>
+              <button type="button" id="cancel-personal-btn" class="action-btn cancel-btn" style="display: none;">Cancelar</button>
+            </div>
+          </div>
+          
+           <!-- Seção de Alteração de Senha -->
+          <div class="step">
+            <div class="step-header">
+              <div class="step-icon"><i class="fa-solid fa-key"></i></div>
+              <h2 class="step-title">Alterar Senha</h2>
+            </div>
+            <p class="step-description">Para sua segurança, digite sua senha atual para definir uma nova.</p>
+             <div class="form-grid">
+                <div class="input-group full-width">
+                    <i class="fa-solid fa-shield-halved input-icon"></i>
+                    <input type="password" id="senha-atual" placeholder="Senha Atual" disabled maxlength="100">
+                    <button type="button" class="password-toggle-btn" data-target="senha-atual" aria-label="Mostrar/Ocultar senha">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <div class="input-group password-group">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" id="nova-senha" placeholder="Nova Senha" disabled maxlength="100">
+                    <button type="button" class="password-toggle-btn" data-target="nova-senha" aria-label="Mostrar/Ocultar senha">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <div class="input-group password-group">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" id="confirmar-senha" placeholder="Confirmar Nova Senha" disabled maxlength="100">
+                    <button type="button" class="password-toggle-btn" data-target="confirmar-senha" aria-label="Mostrar/Ocultar senha">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <a href="../esqueceuSenha/esqueceuSenha.html" class="forgot-password-link">Esqueceu sua senha?</a>
+            <p id="password-message" class="form-message"></p>
+            <div class="action-buttons">
+              <button type="button" id="edit-password-btn" class="action-btn edit-btn">Alterar Senha</button>
+              <button type="button" id="save-password-btn" class="action-btn save-btn" style="display: none;">Salvar Senha</button>
+              <button type="button" id="cancel-password-btn" class="action-btn cancel-btn" style="display: none;">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Rodapé da aplicação -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-column footer-about">
+        <div class="logo">
+          <i class="fa-solid fa-bus"></i>
+          <span>BusStop</span>
+        </div>
+        <p>Simplificando sua mobilidade urbana. Recarregue, renove e planeje suas rotas, tudo em um só lugar.</p>
+      </div>
+      <div class="footer-column footer-links">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../recarga/recarga.html">Recarga</a></li>
+          <li><a href="../renovacao/renovacao.html">Renovação</a></li>
+          <li><a href="../linhas/linhas.html">Linhas</a></li>
+          <li><a href="../termos/termos.html">Termos de Serviço</a></li>
+        </ul>
+      </div>
+      <div class="footer-column footer-social">
+        <h4>Siga-nos</h4>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 BusStop. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Modal de Confirmação para alteração de CPF -->
+  <div id="cpf-confirm-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content small">
+      <button class="modal-close-btn" id="cpf-modal-close">&times;</button>
+      
+      <div class="modal-icon-warning">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <h2>Aviso Importante</h2>
+      
+      <p>O CPF só pode ser salvo <strong class="modal-text-strong">uma única vez</strong> e não poderá ser alterado no futuro.</p>
+      <p>Deseja continuar?</p>
+
+      <div class="modal-actions">
+        <button class="action-btn cancel-btn" id="cpf-modal-cancel">Cancelar</button>
+        <button class="action-btn save-btn" id="cpf-modal-confirm">Entendi, continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script de funcionalidades globais -->
+  <script src="../../assets/js/global.js"></script>
+  <!-- Script de funcionalidades específicas do perfil -->
+  <script src="perfil.js"></script>
+</body>
+</html>

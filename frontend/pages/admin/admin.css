@@ -1,0 +1,268 @@
+/* Definições de reset e estilos globais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Layout do container principal de conteúdo */
+.content-section {
+  padding: 60px 20px 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilização dos cartões de seção (Usuários e Documentos) */
+.admin-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 30px 40px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  border-top: 5px solid #FE0026; 
+}
+
+.card-header {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 25px;
+}
+.card-header h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card-header p {
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Configuração de responsividade para tabelas */
+.table-container {
+  overflow-x: auto; 
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.admin-table th, .admin-table td {
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+.admin-table th {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  background-color: #f8f9fa;
+}
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+.admin-table td {
+  color: #333;
+  font-size: 0.95rem;
+}
+
+/* Estilização específica para botões na tabela de documentos */
+#document-management .admin-table .action-btn {
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  font-size: 0.95rem;
+  text-align: center;
+  line-height: 1; 
+}
+
+#document-management .admin-table .action-btn i {
+  pointer-events: none; 
+}
+
+/* Componentes de botões de ação (CRUD) */
+.action-btn {
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-right: 5px;
+}
+
+.action-btn.approve-btn { background-color: #28a745; color: white; }
+.action-btn.approve-btn:hover { background-color: #218838; }
+
+.action-btn.deny-btn, .action-btn.delete-btn { background-color: #dc3545; color: white; }
+.action-btn.deny-btn:hover, .action-btn.delete-btn:hover { background-color: #c82333; }
+
+.action-btn.edit-btn { background-color: #007bff; color: white; }
+.action-btn.edit-btn:hover { background-color: #0069d9; }
+
+.action-btn.view-btn { background-color: #007bff; color: white; }
+.action-btn.view-btn:hover { background-color: #0069d9; }
+
+
+.action-btn.cancel-btn { background-color: #6c757d; color: white; }
+.action-btn.cancel-btn:hover { background-color: #5a6268; }
+
+.action-btn.save-btn { background-color: #FE0026; color: white; width: 100%; padding: 12px; }
+.action-btn.save-btn:hover { background-color: #902323; }
+
+
+/* Componentes de Modal (Overlay e Conteúdo) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+}
+.modal-content.small {
+  max-width: 400px;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2rem;
+  color: #aaa;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.modal-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.modal-content p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* Formulários dentro de Modais */
+#edit-user-form .input-group {
+  margin-bottom: 15px;
+}
+#edit-user-form label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #333;
+}
+#edit-user-form input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+#edit-user-form input:focus {
+  outline: none;
+  border-color: #FE0026;
+  box-shadow: 0 0 0 3px rgba(166, 40, 40, 0.2);
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Estilização do visualizador de documentos */
+.modal-content.doc-viewer {
+  max-width: 800px; 
+}
+.doc-viewer-body {
+  padding-top: 20px;
+  min-height: 200px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#doc-image-preview {
+  max-height: 70vh; 
+  width: auto;
+  max-width: 100%;
+  border-radius: 8px;
+}
+#doc-pdf-preview {
+  height: 70vh; 
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Componente de carregamento (Spinner) */
+.spinner-container {
+  text-align: center;
+  color: #666;
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #FE0026;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/* Barra de pesquisa */
+.search-bar {
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 400px; 
+}
+.search-bar i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+.search-bar input {
+  width: 100%;
+  padding: 10px 15px 10px 40px; 
+  border-radius: 50px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+.search-bar input:focus {
+  outline: none;
+  border-color: #FE0026;
+  box-shadow: 0 0 0 3px rgba(166, 40, 40, 0.2);
+}

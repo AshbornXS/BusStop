@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recarga de Cartão - BusStop</title>
+  <!-- Ícone da aba gerado via SVG embutido -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100' width='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23FE0026' d='M85.4 37.5c0-2.8-2.2-5-5-5H62.5v-5c0-2.8-2.2-5-5-5H42.5c-2.8 0-5 2.2-5 5v5H19.6c-2.8 0-5 2.2-5 5v30c0 2.8 2.2 5 5 5h2.5v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h30v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h2.5c2.8 0 5-2.2 5-5v-30zm-50 25c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zm37.5 0c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zM62.5 42.5h-25v-15h25v15z'%3E%3C/path%3E%3C/svg%3E">
+  <!-- Importação de folhas de estilo globais e locais -->
+  <link rel="stylesheet" href="../../assets/css/global.css" />
+  <link rel="stylesheet" href="recarga.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body>
+  <!-- Container do menu lateral para dispositivos móveis -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay" style="display: none;"></div>
+  <div class="mobile-nav-menu" id="mobile-nav-menu">
+    <!-- Conteúdo injetado dinamicamente via JavaScript -->
+  </div>
+
+  <!-- Cabeçalho Padrão -->
+  <header>
+    <div class="logo">
+      <i class="fa-solid fa-bus"></i>
+      <span>BusStop</span>
+    </div>
+    <nav>
+      <!-- Link de navegação -->
+      <a href="../../index.html">Home</a>
+      <div class="dropdown" id="servicos-dropdown">
+        <button class="dropdown-toggle" id="servicos-btn">
+          Serviços <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-content" id="servicos-content">
+          <a href="../recarga/recarga.html">Recarga de Cartão</a>
+          <a href="../renovacao/renovacao.html">Renovação de Cartão</a>
+        </div>
+      </div>
+      <a href="../linhas/linhas.html">Linhas</a>
+    </nav>
+    <div class="right-nav">
+      <div class="user-icon-wrapper dropdown">
+        <div class="user-icon" id="user-btn">
+          <i class="fa-regular fa-user"></i>
+        </div>
+        <div class="dropdown-content" id="user-content">
+          <!-- Conteúdo injetado dinamicamente via JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Botão de Menu Mobile (Hambúrguer) -->
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <!-- Banner promocional -->
+    </section>
+
+    <section class="content-section">
+      <div class="main-card">
+
+        <!-- Área de conteúdo restrita a usuários autenticados -->
+        <div id="recharge-container" style="display: none;">
+          <!-- Passo 1: Interface de seleção de valor de recarga -->
+          <div id="valor-step" class="step-content active">
+            
+            <div class="info-header">
+                <div class="display-group">
+                    <p class="display-title">Carteirinha a ser Recarregada</p>
+                    <div class="input-display">
+                        <i class="fa-solid fa-id-card"></i>
+                        <input type="text" id="card-number" disabled>
+                    </div>
+                </div>
+                <div class="display-group">
+                    <p class="display-title">Saldo Atual</p>
+                    <div class="input-display">
+                        <i class="fa-solid fa-wallet"></i>
+                        <input type="text" id="balance-amount" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-header">
+              <span class="step-number">1</span>
+              <h2 class="step-title">Escolha o Valor</h2>
+            </div>
+            
+            <div class="value-options">
+              <button class="value-btn" data-value="10">R$ 10,00</button>
+              <button class="value-btn" data-value="20">R$ 20,00</button>
+              <button class="value-btn" data-value="50">R$ 50,00</button>
+              <button class="value-btn" data-value="100">R$ 100,00</button>
+              <button class="value-btn" id="other-amount-btn">Outro Valor</button>
+            </div>
+            <div id="custom-amount-wrapper" style="display: none;">
+              <div class="input-group">
+                 <span class="input-icon">R$</span>
+                <input type="text" inputmode="decimal" id="custom-amount" placeholder="Digite o valor (Ex: 15,50)">
+              </div>
+            </div>
+            <div class="submit-btn-container">
+              <button id="proceed-to-payment-btn" class="action-btn" disabled>Ir para Pagamento</button>
+            </div>
+          </div>
+
+          <!-- Passo 2: Interface de pagamento e QR Code PIX -->
+          <div id="pix-step" class="step-content">
+            <button id="back-to-value-btn" class="back-btn" aria-label="Voltar"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="step-header">
+              <span class="step-number">2</span>
+              <h2 class="step-title">Pague com PIX</h2>
+            </div>
+            <p class="valor-selecionado">Valor da Recarga: <strong id="pix-amount"></strong></p>
+            <p class="pix-instructions">Para finalizar, escaneie o QR Code abaixo com o app do seu banco ou copie o código.</p>
+            <div class="pix-details">
+              <div class="qr-code-container">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=00020126580014br.gov.bcb.pix0136123e4567-e89b-12d3-a456-4266554400005204000053039865802BR5913NOME%20DO%20RECEBEDOR6008CIDADE62070503***6304E7DF" alt="QR Code PIX">
+                <div class="timer">QR Code expira em: <span id="pix-timer"></span></div>
+              </div>
+              <div class="pix-copy-paste">
+                <p>Ou copie o código:</p>
+                <div class="copy-field">
+                  <input type="text" id="pix-code" value="00020126580014br.gov.bcb.pix..." readonly>
+                  <button id="copy-btn"><i class="fa-regular fa-copy"></i></button>
+                </div>
+                <span id="copy-feedback"></span>
+              </div>
+            </div>
+            <div class="payment-status">
+              <i class="fa-solid fa-spinner fa-spin"></i>
+              <span>Aguardando pagamento...</span>
+            </div>
+          </div>
+          
+          <!-- Passo 3: Feedback de sucesso da transação -->
+          <div id="confirmation-step" class="step-content">
+             <div class="confirmation-content">
+                <div class="confirmation-icon">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <h2 class="step-title">Recarga Confirmada!</h2>
+                <p>O valor de <strong id="recharged-amount"></strong> foi adicionado ao seu cartão.</p>
+                <p class="card-info">Os créditos podem levar alguns minutos para serem processados.</p>
+                <div class="submit-btn-container">
+                    <a href="../recarga/recarga.html" class="action-btn">Fazer Nova Recarga</a>
+                </div>
+             </div>
+          </div>
+
+          <!-- Feedback de erro ou expiração da transação -->
+          <div id="error-step" class="step-content">
+            <div class="error-content">
+               <div class="error-icon">
+                 <i class="fa-solid fa-xmark"></i>
+               </div>
+               <h2 class="step-title">Pagamento Expirado</h2>
+               <p>O tempo para realizar o pagamento esgotou. Por favor, tente novamente.</p>
+               <div class="submit-btn-container">
+                   <a href="../recarga/recarga.html" class="action-btn">Tentar Novamente</a>
+               </div>
+            </div>
+         </div>
+        </div>
+
+        <!-- Mensagem de bloqueio para usuários não autenticados -->
+        <div id="logged-out-message" class="logged-out-box" style="display: none;">
+            <div class="icon"><i class="fa-solid fa-lock"></i></div>
+            <h2>Acesso Restrito</h2>
+            <p>Você precisa estar logado para adicionar créditos à sua carteirinha.</p>
+            <a href="../loginCadastro/loginCadastro.html#login" class="action-btn">Fazer Login</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  
+  <!-- Rodapé da aplicação -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-column footer-about">
+        <div class="logo">
+          <i class="fa-solid fa-bus"></i>
+          <span>BusStop</span>
+        </div>
+        <p>Simplificando sua mobilidade urbana. Recarregue, renove e planeje suas rotas, tudo em um só lugar.</p>
+      </div>
+      <div class="footer-column footer-links">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../recarga/recarga.html">Recarga</a></li>
+          <li><a href="../renovacao/renovacao.html">Renovação</a></li>
+          <li><a href="../linhas/linhas.html">Linhas</a></li>
+          <li><a href="../termos/termos.html">Termos de Serviço</a></li>
+        </ul>
+      </div>
+      <div class="footer-column footer-social">
+        <h4>Siga-nos</h4>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 BusStop. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/global.js"></script>
+  <script src="recarga.js"></script>
+</body>
+</html>

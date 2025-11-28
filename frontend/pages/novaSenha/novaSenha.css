@@ -1,0 +1,206 @@
+/* Configuração de reset e estilos globais para tipografia e layout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Elementos de identidade visual (Logo) */
+.brand-logo {
+    margin-bottom: 25px;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #333;
+    text-decoration: none;
+}
+
+.logo-link .fa-bus {
+    font-size: 2.5rem;
+    color: #FE0026;
+}
+
+.logo-link h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Container principal do formulário de redefinição */
+.reset-password-container {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 500px;
+  padding: 50px;
+}
+
+/* Estilização do formulário e seus componentes */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.auth-form h1 {
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 2rem;
+}
+
+.form-description {
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* Grupo de inputs com ícones */
+.input-group { 
+  position: relative; 
+  width: 100%;
+  margin-bottom: 15px;
+}
+.input-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #aaa; z-index: 2;}
+.input-group input { width: 100%; padding: 12px 15px 12px 50px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 50px; font-size: 1rem; transition: all 0.3s; }
+.input-group input:focus { outline: none; border-color: #FE0026; box-shadow: 0 0 0 3px rgba(166, 40, 40, 0.2); }
+
+/* Ajustes específicos para campos de senha (espaço para botão toggle) */
+.input-group.password-group input {
+    padding-right: 60px; 
+}
+
+/* Reset de estilos nativos de navegadores para campos de senha */
+input[type="password"]::-webkit-reveal,
+input[type="password"]::-webkit-clear-button {
+    display: none !important;
+    -webkit-appearance: none !important;
+}
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+/* Botão para alternar visibilidade da senha */
+.password-toggle-btn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #aaa;
+    font-size: 1rem;
+    z-index: 3;
+}
+
+/* Mensagem de feedback de erro */
+.error-message {
+    color: #FE0026;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    min-height: 1.2em;
+    font-weight: 500;
+}
+
+/* Botão de submissão */
+.submit-btn {
+  background-color: #FE0026;
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  width: 100%;
+}
+.submit-btn:hover {
+  background-color: #902323;
+  transform: translateY(-2px);
+}
+
+/* Link de navegação de retorno */
+.back-to-login {
+    margin-top: 25px;
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-to-login:hover {
+    color: #FE0026;
+    text-decoration: underline;
+}
+
+/* Componente de notificação flutuante (Toast) */
+.toast-notification {
+    position: fixed;
+    top: 20px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745;
+    color: white;
+    padding: 15px 25px; 
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    z-index: 9999;
+    font-size: 1rem; 
+    font-weight: 500;
+    animation: slideAndFade 3s forwards;
+    opacity: 0;
+}
+.toast-notification.error {
+    background-color: #dc3545; 
+}
+
+.toast-notification i {
+    font-size: 1.2rem; 
+}
+
+@keyframes slideAndFade {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -30px);
+    }
+    15% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    85% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -30px);
+    }
+}

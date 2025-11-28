@@ -1,0 +1,23 @@
+{
+  "name": "BusStop - Gestão de Transportes",
+  "short_name": "BusStop",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#FE0026",
+  "description": "Gerencie seu cartão de transporte, recarregue, renove e consulte linhas.",
+  "icons": [
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+       "purpose": "any maskable"
+    }
+  ]
+}

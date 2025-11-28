@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BusStop - Encontre sua Linha</title>
+  <!-- Ícone da Aba (Favicon) -->
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100' width='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23FE0026' d='M85.4 37.5c0-2.8-2.2-5-5-5H62.5v-5c0-2.8-2.2-5-5-5H42.5c-2.8 0-5 2.2-5 5v5H19.6c-2.8 0-5 2.2-5 5v30c0 2.8 2.2 5 5 5h2.5v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h30v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h2.5c2.8 0 5-2.2 5-5v-30zm-50 25c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zm37.5 0c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zM62.5 42.5h-25v-15h25v15z'%3E%3C/path%3E%3C/svg%3E">
+
+  <!-- Importação de estilos globais e locais -->
+  <link rel="stylesheet" href="../../assets/css/global.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <!-- CSS da Página -->
+  <link rel="stylesheet" href="linhas.css" />
+</head>
+
+<body>
+  <!-- Container do menu lateral para dispositivos móveis -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay" style="display: none;"></div>
+  <div class="mobile-nav-menu" id="mobile-nav-menu">
+    <!-- O global.js vai popular este menu -->
+  </div>
+
+  <!-- Cabeçalho Padrão -->
+  <header>
+    <div class="logo">
+      <i class="fa-solid fa-bus"></i>
+      <span>BusStop</span>
+    </div>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <div class="dropdown" id="servicos-dropdown">
+        <button class="dropdown-toggle" id="servicos-btn">
+          Serviços <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-content" id="servicos-content">
+          <a href="../recarga/recarga.html">Recarga de Cartão</a>
+          <a href="../renovacao/renovacao.html">Renovação de Cartão</a>
+        </div>
+      </div>
+      <a href="../linhas/linhas.html">Linhas</a>
+    </nav>
+    <div class="right-nav">
+      <div class="user-icon-wrapper dropdown">
+        <div class="user-icon" id="user-btn">
+          <i class="fa-regular fa-user"></i>
+        </div>
+        <div class="dropdown-content" id="user-content">
+          <!-- O JS preenche aqui -->
+        </div>
+      </div>
+    </div>
+    <!-- Botão de Menu Mobile (Hambúrguer) -->
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <!-- Conteúdo do Hero (se houver) -->
+    </section>
+
+    <section class="content-section">
+      <div class="lines-container">
+        <div class="lines-header">
+          <h2>Nossas Linhas</h2>
+          <p>Selecione uma linha para visualizar o trajeto no mapa.</p>
+        </div>
+
+        <!-- Seleção de Linhas -->
+        <div class="line-cards-container">
+          <button class="line-card" data-bus-id="01">
+            <span class="line-number">01</span>
+            <span class="line-name">Centro / Jd. Progresso</span>
+          </button>
+          <button class="line-card" data-bus-id="02">
+            <span class="line-number">02</span>
+            <span class="line-name">Terminal / Shopping</span>
+          </button>
+          <button class="line-card" data-bus-id="03">
+            <span class="line-number">03</span>
+            <span class="line-name">Circular Universitário</span>
+          </button>
+          <button class="line-card" data-bus-id="04">
+            <span class="line-number">04</span>
+            <span class="line-name">Bairro / Hospital</span>
+          </button>
+        </div>
+
+        <!-- Área do Mapa -->
+        <div id="map-container">
+          <div id="map-loader">
+            <div class="loader"></div>
+            <p>Selecione uma linha para ver o trajeto.</p>
+          </div>
+          <div id="map" style="display: none;"></div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-column footer-about">
+        <div class="logo">
+          <i class="fa-solid fa-bus"></i>
+          <span>BusStop</span>
+        </div>
+        <p>Simplificando sua mobilidade urbana. Recarregue, renove e planeje suas rotas, tudo em um só lugar.</p>
+      </div>
+      <div class="footer-column footer-links">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../recarga/recarga.html">Recarga</a></li>
+          <li><a href="../renovacao/renovacao.html">Renovação</a></li>
+          <li><a href="../linhas/linhas.html">Linhas</a></li>
+          <li><a href="../termos/termos.html">Termos de Serviço</a></li>
+        </ul>
+      </div>
+      <div class="footer-column footer-social">
+        <h4>Siga-nos</h4>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 BusStop. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Script de configuração -->
+  <script src="../../assets/js/config.js"></script>
+
+  <!-- Script de funcionalidades globais -->
+  <script src="../../assets/js/global.js"></script>
+
+  <!-- Lógica principal do mapa interativo -->
+  <script>
+    // Referências aos elementos DOM
+    const lineCards = document.querySelectorAll(".line-card");
+    const mapContainer = document.getElementById("map-container");
+    const mapLoader = document.getElementById("map-loader");
+    const mapElement = document.getElementById("map");
+    const loaderText = mapLoader.querySelector('p');
+
+    // Configuração da API e constantes globais
+    const API_URL = 'https://busstop-b9ov.onrender.com';
+    const MOGI_GUACU_CENTER = { lat: -22.371, lng: -46.943 };
+
+    // --- CONFIGURAÇÃO DE VELOCIDADE ---
+    // Defina o tempo em milissegundos entre cada movimento.
+    const VELOCIDADE_ANIMACAO = 1000;
+
+    // Variáveis de controle do mapa
+    let map;
+    let rotaFixa;
+    let marcadorOnibus;
+    let pontosDaRota = [];
+    let animationInterval; // Controle do intervalo de animação para limpeza
+
+    // Funções de manipulação do Google Maps
+
+    /**
+     * Busca os pontos da rota na API para a linha selecionada.
+     * @param {string} busId - O ID da linha (ex: "01").
+     */
+    async function carregarPontosDaRota(busId) {
+      // Reinicia o array de pontos
+      pontosDaRota = [];
+      const fetchId = `bus_${busId}`; // Formata o ID para o padrão da API
+
+      try {
+        const response = await fetch(`${API_URL}/locations/all/${fetchId}`);
+        console.log("Resposta da API (rota fixa):", response);
+
+        if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error("Nenhum dado encontrado para esta linha.");
+          }
+          throw new Error(`Erro na requisição: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Dados recebidos (rota fixa):", data);
+
+        if (!Array.isArray(data) || data.length === 0) {
+          throw new Error("Formato de dados inválido ou rota vazia.");
+        }
+
+        // Mapeia os dados da API para o formato do Google Maps {lat, lng}
+        pontosDaRota = data.map(p => ({ lat: p.latitude, lng: p.longitude }));
+      } catch (error) {
+        console.error("Erro ao carregar os pontos da rota:", error);
+        throw error; // Propaga o erro para ser tratado na função de carregamento
+      }
+    }
+
+    /**
+     * Inicia a simulação de movimento do ônibus ao longo da rota.
+     * @param {string} busId - O ID da linha selecionada.
+     */
+    async function iniciarRastreamento(busId) {
+      // Garante que não há animações anteriores rodando
+      if (animationInterval) clearInterval(animationInterval);
+
+      // Utiliza a rota carregada anteriormente
+      const posicoes = pontosDaRota;
+
+      if (posicoes.length === 0) return;
+
+      let i = 0;
+
+      // Loop de animação baseado na constante VELOCIDADE_ANIMACAO
+      animationInterval = setInterval(() => {
+        try {
+          atualizarMarcador(posicoes[i]);
+          i++;
+          // Reinicia o índice ao chegar ao fim para criar um loop contínuo
+          if (i >= posicoes.length) i = 0;
+        } catch (error) {
+          console.error("Erro ao atualizar a posição do ônibus:", error);
+          clearInterval(animationInterval);
+        }
+      }, VELOCIDADE_ANIMACAO);
+    }
+
+    /**
+     * Cria ou atualiza a posição visual do marcador no mapa.
+     * @param {object} posicao - Objeto contendo {lat, lng}.
+     */
+    function atualizarMarcador(posicao) {
+      // Definição do ícone personalizado (SVG via Data URI)
+      // Círculo branco com borda vermelha e ícone de ônibus centralizado
+      const redBusIcon = {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+          '<svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 100 100">' +
+          '<circle cx="50" cy="50" r="46" fill="#FFFFFF" stroke="#FE0026" stroke-width="6" />' +
+          '<g transform="translate(50, 50) scale(0.6) translate(-50, -50)">' +
+          '<path fill="#FE0026" d="M85.4 37.5c0-2.8-2.2-5-5-5H62.5v-5c0-2.8-2.2-5-5-5H42.5c-2.8 0-5 2.2-5 5v5H19.6c-2.8 0-5 2.2-5 5v5H19.6c-2.8 0-5 2.2-5 5v30c0 2.8 2.2 5 5 5h2.5v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h30v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h2.5c2.8 0 5-2.2 5-5v-30zm-50 25c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zm37.5 0c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zM62.5 42.5h-25v-15h25v15z"/>' +
+          '</g>' +
+          '</svg>'
+        ),
+        scaledSize: new google.maps.Size(44, 44), // Dimensões do marcador
+        anchor: new google.maps.Point(22, 22)     // Ponto de ancoragem (centro)
+      };
+
+      if (marcadorOnibus) {
+        // Atualiza posição se já existir
+        marcadorOnibus.setPosition(posicao);
+      } else {
+        // Instancia novo marcador se não existir
+        marcadorOnibus = new google.maps.Marker({
+          position: posicao,
+          map: map,
+          title: 'Ônibus em Movimento',
+          icon: redBusIcon
+        });
+      }
+    }
+
+    /**
+     * Remove a rota e o marcador atuais do mapa e limpa intervalos.
+     */
+    function clearCurrentRoute() {
+      if (animationInterval) clearInterval(animationInterval);
+      if (marcadorOnibus) {
+        marcadorOnibus.setMap(null);
+        marcadorOnibus = null;
+      }
+      if (rotaFixa) {
+        rotaFixa.setMap(null);
+        rotaFixa = null;
+      }
+    }
+
+    /**
+     * Orquestrador principal do carregamento de rota.
+     * Gerencia UI, chamadas de API e renderização.
+     * @param {string} busId - O ID da linha selecionada.
+     */
+    async function handleRouteLoading(busId) {
+      // 1. Prepara a UI (Mostra loader)
+      mapContainer.style.display = 'block';
+      mapElement.style.display = 'block';
+      mapLoader.style.display = 'flex';
+      loaderText.textContent = 'Buscando rota da API...';
+      mapLoader.querySelector('.loader').style.display = 'block';
+
+      // 2. Limpa o estado anterior do mapa
+      clearCurrentRoute();
+
+      try {
+        // 3. Busca os dados geométricos da rota
+        await carregarPontosDaRota(busId);
+
+        // 4. Renderiza a linha vermelha da rota (Polyline)
+        rotaFixa = new google.maps.Polyline({
+          path: pontosDaRota,
+          geodesic: true,
+          strokeColor: '#FE0026',
+          strokeOpacity: 0.8,
+          strokeWeight: 6
+        });
+        rotaFixa.setMap(map);
+
+        // 5. Ajusta o zoom do mapa para englobar toda a rota
+        const bounds = new google.maps.LatLngBounds();
+        pontosDaRota.forEach(p => bounds.extend(p));
+        map.fitBounds(bounds);
+
+        // 6. Inicia a animação do ícone do ônibus
+        await iniciarRastreamento(busId);
+
+        // 7. Finaliza o carregamento (Esconde loader)
+        mapLoader.style.display = 'none';
+
+      } catch (error) {
+        // Tratamento de erros de carregamento
+        console.error("Erro ao carregar rota:", error);
+        loaderText.textContent = error.message;
+        mapLoader.querySelector('.loader').style.display = 'none';
+      }
+    }
+
+    /**
+     * Adiciona os listeners de clique aos botões de linha.
+     */
+    function setupButtonListeners() {
+      lineCards.forEach(card => {
+        card.addEventListener("click", () => {
+          // Atualiza estado visual dos botões
+          lineCards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+
+          // Inicia o processo de carregamento
+          const busId = card.dataset.busId;
+          handleRouteLoading(busId);
+        });
+      });
+    }
+
+    /**
+     * Função de inicialização do mapa (Google Callback)
+     * Chamada automaticamente quando a API do Google Maps é carregada.
+     */
+    window.initMap = function () {
+      // Cria o mapa e o centraliza em Mogi Guaçu
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 14,
+        center: MOGI_GUACU_CENTER,
+        mapId: 'DEMO_MAP_ID'
+      });
+
+      // Configura os botões de linha
+      setupButtonListeners();
+    }
+
+    function loadGoogleMaps() {
+      if (typeof CONFIG === 'undefined' || !CONFIG.GOOGLE_MAPS_API_KEY) {
+        console.error("Erro: Arquivo config.js não carregado ou chave API ausente.");
+        alert("Erro de configuração: Chave do mapa não encontrada.");
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${CONFIG.GOOGLE_MAPS_API_KEY}&callback=initMap`;
+      script.async = true;
+      script.defer = true;
+      script.loading = 'lazy';
+      document.body.appendChild(script);
+    }
+
+    // Inicia o carregamento
+    loadGoogleMaps();
+
+  </script>
+</body>
+
+</html>

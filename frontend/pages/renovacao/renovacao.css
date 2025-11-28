@@ -1,0 +1,174 @@
+/* Definições de reset e estilos globais de layout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+main {
+  flex-grow: 1;
+}
+
+/* Estilização específica para a página de Renovação */
+
+/* Configuração do banner principal (Hero) */
+.hero {
+  background: url(../../assets/images/renovacao.jpg) no-repeat center center/cover;
+  height: 280px;
+  padding: 0 40px;
+  text-align: center;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-text h1 { font-size: 3rem; font-weight: 700; margin-bottom: 10px; }
+.hero-text p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
+
+.content-section { padding: 60px 20px; }
+
+/* Container principal do formulário */
+.renewal-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 40px 50px;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  border-top: 5px solid #FE0026;
+}
+
+/* Estilos para as etapas do processo */
+.step { border-bottom: 1px solid #eee; padding-bottom: 30px; margin-bottom: 30px; }
+.step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.step-header { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
+.step-number { background-color: #FE0026; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; flex-shrink: 0; }
+.step-title { font-size: 1.8rem; font-weight: 600; color: #333; }
+.step-description { color: #666; margin-left: 50px; margin-bottom: 25px; }
+
+/* Grid de inputs para dados do usuário */
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+.input-group.full-width { grid-column: 1 / -1; }
+
+.input-group { position: relative; }
+.input-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #aaa; }
+.input-group input { width: 100%; padding: 12px 15px 12px 50px; border: 1px solid #ddd; border-radius: 50px; font-size: 1rem; transition: all 0.3s; }
+.input-group input:focus { outline: none; border-color: #FE0026; box-shadow: 0 0 0 3px rgba(166, 40, 40, 0.2); }
+.input-group input:disabled { background-color: #e9ecef; cursor: not-allowed; color: #6c757d; }
+
+/* Links para edição de dados */
+.data-edit-link { text-align: center; padding-top: 30px; }
+.data-edit-link p { color: #555; font-size: 0.95rem; }
+.data-edit-link a { color: #FE0026; font-weight: 600; text-decoration: none; transition: text-decoration 0.3s; }
+.data-edit-link a:hover { text-decoration: underline; }
+
+/* Estilização customizada para input de arquivo */
+.file-input-wrapper { position: relative; width: 100%; }
+.file-input-wrapper input[type="file"] { display: none; }
+.file-input-label { background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 50px; padding: 12px 20px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: all 0.3s; color: #555; font-weight: 500; }
+.file-input-label:hover { border-color: #FE0026; background-color: #fff; }
+.file-input-label i { color: #FE0026; }
+.file-name-display { margin-top: 8px; font-size: 0.9rem; color: #777; padding-left: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Aviso visual para campos obrigatórios não preenchidos */
+.data-missing-warning {
+    color: #FE0026;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.data-missing-warning a {
+    color: #FE0026;
+    font-weight: 700;
+}
+
+/* Botões de ação do formulário */
+.submit-btn-container { text-align: center; margin-top: 40px; }
+.submit-btn-container button { background-color: #FE0026; color: white; border: none; padding: 14px 40px; border-radius: 50px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(166, 40, 40, 0.2); }
+.submit-btn-container button:hover { background-color: #902323; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(166, 40, 40, 0.3); }
+.submit-btn-container button:disabled { background-color: #cccccc; color: #666666; cursor: not-allowed; box-shadow: none; transform: none; }
+
+/* Componentes de status e feedback (Bloqueio, Acesso Restrito) */
+.renewal-status-box { 
+  text-align: center; 
+  padding: 40px; 
+}
+.renewal-status-box .icon { 
+  font-size: 3rem; 
+  margin-bottom: 20px; 
+  display: inline-block;
+}
+
+.renewal-status-box .icon.status-ativo { color: #22c55e; }
+.renewal-status-box .icon.status-negado { color: #FE0026; }
+
+.renewal-status-box h2 { 
+  font-size: 1.8rem; 
+  margin-bottom: 15px; 
+  color: #333; 
+}
+.renewal-status-box p { 
+  color: #666; 
+  margin-bottom: 30px; 
+}
+
+.renewal-status-box p.validity-text {
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.renewal-status-box .action-btn { 
+  background-color: #FE0026; 
+  color: white; 
+  border: none; 
+  padding: 14px 40px; 
+  border-radius: 50px; 
+  font-size: 1.1rem; 
+  font-weight: bold; 
+  cursor: pointer; 
+  transition: all 0.3s; 
+  text-decoration: none; 
+  display: inline-block; 
+}
+.renewal-status-box .action-btn:hover { 
+  background-color: #902323; 
+  transform: translateY(-2px); 
+}
+
+
+footer { background-color: #333; color: white; text-align: center; padding: 25px; margin-top: 60px; }
+
+@media (max-width: 768px) {
+  /* Adaptação do banner Hero para telas menores */
+  .hero {
+    height: 150px; 
+    padding: 0 20px;
+    background-position: top center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .renewal-card { padding: 30px 25px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .step-title { font-size: 1.5rem; }
+  .step-description { margin-left: 0; }
+  .hero-text h1 { font-size: 2.5rem; }
+}

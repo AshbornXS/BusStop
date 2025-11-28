@@ -1,0 +1,215 @@
+/* Definições de reset e normalização de estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
+
+/* Estilização específica para o fluxo de recarga */
+
+.hero {
+  /* Configuração do banner principal (Hero) */
+  background: url(../../assets/images/recarga.jpg) no-repeat center center/cover;
+  /* Definição de altura e alinhamento central */
+  height: 280px;
+  padding: 0 40px;
+  text-align: center;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-text h1 { font-size: 3rem; font-weight: 700; margin-bottom: 10px; }
+.hero-text p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
+
+.content-section { padding: 60px 20px; }
+.main-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 40px 50px;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  border-top: 5px solid #FE0026;
+  position: relative;
+  overflow: hidden; 
+}
+
+.step-content { display: none; }
+.step-content.active { display: block; }
+
+/* Animações de transição entre etapas do formulário */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step-content.active .confirmation-content,
+.step-content.active .error-content {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+
+.step-header { display: flex; align-items: center; gap: 15px; justify-content: center; margin-bottom: 15px; }
+.step-number { background-color: #FE0026; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; flex-shrink: 0; }
+.step-title { font-size: 1.8rem; font-weight: 600; color: #333; text-align: center; }
+
+/* Painel de informações do usuário (Saldo e Carteirinha) */
+.info-header {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.display-group {
+    text-align: center;
+}
+.display-title {
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+.input-display {
+    background-color: #e9ecef;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px 20px;
+    max-width: 280px;
+    margin: 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    cursor: not-allowed;
+}
+.input-display i {
+    color: #FE0026;
+    font-size: 1.2rem;
+}
+.input-display input:disabled {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #6c757d;
+    letter-spacing: 2px;
+    padding: 0;
+    width: auto;
+    text-align: left;
+    cursor: not-allowed;
+}
+
+
+/* Estilos para a seleção de valores de recarga */
+.value-options { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 25px; width: 100%; max-width: 520px; margin-left: auto; margin-right: auto; }
+.value-btn { background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 12px; font-size: 1.1rem; font-weight: 500; cursor: pointer; transition: all 0.3s; flex-grow: 1; min-width: 120px; text-align: center; }
+.value-btn:hover { border-color: #FE0026; color: #FE0026; }
+.value-btn.selected { background-color: #FE0026; color: white; border-color: #FE0026; }
+
+#custom-amount-wrapper { margin-bottom: 30px; transition: all 0.3s ease-in-out; width: 100%; max-width: 350px; margin-left: auto; margin-right: auto; }
+
+.input-group { position: relative; }
+.input-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #888; font-size: 1rem; pointer-events: none; }
+.input-group input { width: 100%; padding: 12px 15px 12px 55px; border: 1px solid #ddd; border-radius: 50px; font-size: 1rem; transition: all 0.3s; }
+.input-group input:focus { outline: none; border-color: #FE0026; box-shadow: 0 0 0 3px rgba(166, 40, 40, 0.2); }
+
+/* Estilos para a área de pagamento via PIX */
+.back-btn { position: absolute; top: 20px; left: 20px; background: #f0f0f0; border: none; width: 40px; height: 40px; border-radius: 50%; color: #FE0026; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s; z-index: 2; }
+.back-btn:hover { background-color: #e0e0e0; }
+
+.valor-selecionado { text-align: center; font-size: 1.2rem; color: #333; margin-bottom: 15px; }
+.valor-selecionado strong { font-weight: 700; }
+
+.pix-instructions { text-align: center; color: #666; max-width: 450px; margin: 0 auto 30px; }
+.pix-details { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+.qr-code-container { text-align: center; }
+.qr-code-container img { border: 5px solid #eee; border-radius: 10px; }
+.timer { margin-top: 10px; font-weight: 500; }
+
+.pix-copy-paste { width: 100%; max-width: 400px; }
+.copy-field { display: flex; }
+#pix-code { flex-grow: 1; padding: 10px 15px; border: 1px solid #ddd; border-radius: 8px 0 0 8px; background-color: #f8f9fa; font-family: monospace; }
+#copy-btn { padding: 10px 15px; border: 1px solid #ddd; border-left: none; background-color: #eee; cursor: pointer; border-radius: 0 8px 8px 0; }
+#copy-feedback { font-size: 0.9rem; color: #28a745; text-align: center; display: block; height: 1em; margin-top: 5px; }
+.payment-status { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 30px; font-size: 1.1rem; color: #555; }
+
+/* Estilos para a tela de confirmação de sucesso */
+.confirmation-content { text-align: center; }
+.confirmation-icon { width: 80px; height: 80px; border-radius: 50%; background-color: #28a745; color: white; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 20px; }
+.confirmation-content p { font-size: 1.1rem; margin-bottom: 10px; }
+.card-info { font-size: 0.9rem; color: #777; margin-bottom: 30px; }
+
+/* Estilos para a tela de erro de pagamento */
+.error-content { text-align: center; }
+.error-icon { width: 80px; height: 80px; border-radius: 50%; background-color: #dc3545; color: white; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 20px; }
+
+/* Botões de ação */
+.submit-btn-container { text-align: center; margin-top: 20px; }
+.action-btn { background-color: #FE0026; color: white; border: none; padding: 14px 40px; border-radius: 50px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+.action-btn:hover { background-color: #902323; transform: translateY(-2px); }
+.action-btn:disabled { background-color: #ccc; cursor: not-allowed; transform: none; }
+
+/* Estilos para o aviso de restrição de acesso */
+.logged-out-box {
+    text-align: center;
+    padding: 40px;
+}
+.logged-out-box .icon {
+    font-size: 3rem;
+    color: #FE0026;
+    margin-bottom: 20px;
+}
+.logged-out-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+.logged-out-box p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+
+footer { background-color: #333; color: white; text-align: center; padding: 25px; margin-top: 60px; }
+
+@media (max-width: 768px) {
+  /* Adaptação responsiva do banner Hero */
+  .hero {
+    height: 150px; 
+    padding: 0 20px;
+    background-position: top center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .main-card { padding: 30px 25px; }
+  .value-options { grid-template-columns: 1fr 1fr; }
+  .hero-text h1 { font-size: 2.5rem; }
+}

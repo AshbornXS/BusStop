@@ -1,0 +1,121 @@
+/* Configuração base de reset e tipografia global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Definição de layout flexível para centralização do conteúdo */
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Estilização da identidade visual (Logo) */
+.brand-logo {
+    margin-bottom: 25px;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #333;
+    text-decoration: none;
+}
+
+.logo-link .fa-bus {
+    font-size: 2.5rem;
+    color: #FE0026;
+}
+
+.logo-link h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Container principal para o formulário de recuperação */
+.forgot-password-container {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 500px;
+  padding: 50px;
+}
+
+/* Layout e tipografia do formulário */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.auth-form h1 {
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 2rem;
+}
+
+.form-description {
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.input-group { 
+  position: relative; 
+  width: 100%;
+  margin-bottom: 15px;
+}
+.input-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #aaa; }
+.input-group input { width: 100%; padding: 12px 15px 12px 50px; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 50px; font-size: 1rem; transition: all 0.3s; }
+.input-group input:focus { outline: none; border-color: #FE0026; box-shadow: 0 0 0 3px rgba(166, 40, 40, 0.2); }
+
+.submit-btn {
+  background-color: #FE0026;
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  width: 100%;
+}
+.submit-btn:hover {
+  background-color: #902323;
+  transform: translateY(-2px);
+}
+
+/* Navegação de retorno para o login */
+.back-to-login {
+    margin-top: 25px;
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-to-login:hover {
+    color: #FE0026;
+    text-decoration: underline;
+}
+
+/* Notificações Toast importadas do global.css */

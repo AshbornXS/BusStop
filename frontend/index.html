@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BusStop - Início</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100' width='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23FE0026' d='M85.4 37.5c0-2.8-2.2-5-5-5H62.5v-5c0-2.8-2.2-5-5-5H42.5c-2.8 0-5 2.2-5 5v5H19.6c-2.8 0-5 2.2-5 5v30c0 2.8 2.2 5 5 5h2.5v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h30v7.5c0 2.8 2.2 5 5 5h5c2.8 0 5-2.2 5-5v-7.5h2.5c2.8 0 5-2.2 5-5v-30zm-50 25c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zm37.5 0c-4.1 0-7.5-3.4-7.5-7.5s3.4-7.5 7.5-7.5 7.5 3.4 7.5 7.5-3.4 7.5-7.5 7.5zM62.5 42.5h-25v-15h25v15z'%3E%3C/path%3E%3C/svg%3E">
+  
+  <!-- Manifesto para funcionalidade PWA -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Importação de folhas de estilo globais e específicas -->
+  <link rel="stylesheet" href="assets/css/global.css" />
+  <link rel="stylesheet" href="index.css" />
+  <!-- Biblioteca de ícones Font Awesome via CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body>
+  <!-- Estrutura do menu lateral para dispositivos móveis (populado via JS) -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay" style="display: none;"></div>
+  <div class="mobile-nav-menu" id="mobile-nav-menu">
+    <!-- O conteúdo é injetado dinamicamente pelo script global.js -->
+  </div>
+
+  <!-- Cabeçalho principal da aplicação -->
+  <header>
+    <!-- Logotipo e marca -->
+    <div class="logo">
+      <i class="fa-solid fa-bus"></i>
+      <span>BusStop</span>
+    </div>
+    <!-- Navegação principal (Desktop) -->
+    <nav>
+      <a href="index.html">Home</a>
+      <div class="dropdown" id="servicos-dropdown">
+        <button class="dropdown-toggle" id="servicos-btn">
+          Serviços <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-content" id="servicos-content">
+          <a href="pages/recarga/recarga.html">Recarga de Cartão</a>
+          <a href="pages/renovacao/renovacao.html">Renovação de Cartão</a>
+        </div>
+      </div>
+      <a href="pages/linhas/linhas.html">Linhas</a>
+    </nav>
+    <!-- Área do usuário (Login/Perfil) -->
+    <div class="right-nav">
+        <div class="user-icon-wrapper dropdown">
+          <div class="user-icon" id="user-btn">
+            <i class="fa-regular fa-user"></i>
+          </div>
+          <div class="dropdown-content" id="user-content">
+            <!-- Conteúdo injetado dinamicamente conforme estado de autenticação -->
+          </div>
+        </div>
+    </div>
+
+    <!-- Botão de acionamento do menu mobile -->
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
+  
+  <main>
+    <!-- Seção Hero: Apresentação visual principal -->
+    <section class="hero">
+      <!-- Conteúdo textual removido para focar na imagem de fundo -->
+    </section>
+    
+    <!-- Seção de Funcionalidades Principais (Cards) -->
+    <section class="features" id="features">
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-wallet"></i></div>
+        <h3>Recarga Rápida</h3>
+        <p>Adicione créditos à sua carteirinha de forma instantânea e segura, a qualquer hora e de qualquer lugar.</p>
+        <a href="pages/recarga/recarga.html" class="card-button">Recarregar Agora</a>
+      </div>
+      
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-id-card"></i></div>
+        <h3>Renovação Online</h3>
+        <p>Renove sua carteirinha de estudante ou especial sem filas. Envie seus documentos de forma 100% digital.</p>
+        <a href="pages/renovacao/renovacao.html" class="card-button">Renovar Agora</a>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-map-location-dot"></i></div>
+        <h3>Consulte as Linhas</h3>
+        <p>Veja os trajetos, horários e planeje sua viagem com antecedência para não perder o seu ônibus.</p>
+        <a href="pages/linhas/linhas.html" class="card-button">Ver Linhas</a>
+      </div>
+    </section>
+
+    <!-- Seção Explicativa: Passo a passo -->
+    <section class="how-it-works">
+      <h2>Como Funciona?</h2>
+      <div class="how-it-works-grid">
+        <div class="step-card">
+          <div class="step-icon"><i class="fa-solid fa-user-plus"></i></div>
+          <h3>1. Cadastre-se</h3>
+          <p>Crie sua conta em segundos para ter acesso a todos os serviços.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-icon"><i class="fa-solid fa-wallet"></i></div>
+          <h3>2. Recarregue</h3>
+          <p>Adicione créditos via PIX de forma rápida e 100% segura.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-icon"><i class="fa-solid fa-bus-simple"></i></div>
+          <h3>3. Utilize</h3>
+          <p>Use seu cartão normalmente. A renovação é feita online.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Institucional: Sobre a plataforma -->
+    <section class="about-us">
+      <div class="about-container">
+        
+        <div class="about-image">
+          <img src="assets/images/onibus.jpg" alt="Ilustração da BusStop">
+        </div>
+
+        <div class="about-content">
+          <h2><i class="fa-solid fa-bullseye"></i> Sobre Nós</h2>
+          <p>A BusStop nasceu com a missão de simplificar a mobilidade urbana. Cansados de filas e burocracia, criamos uma plataforma digital completa onde você pode gerenciar tudo relacionado ao seu transporte público em um só lugar.</p>
+          <p>Da recarga instantânea do seu cartão à renovação de documentos sem sair de casa, nossa tecnologia trabalha para que sua única preocupação seja chegar ao seu destino.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de Créditos: Equipe de desenvolvimento -->
+    <section class="team-section">
+      <h2>Nossa Equipe</h2>
+      <p class="team-subtitle">O projeto BusStop é desenvolvido por estudantes dedicados.</p>
+      <div class="team-layout">
+        <div class="team-member">
+          <i class="fa-solid fa-user-graduate"></i>
+          <h4>BEATRIZ VITORIA LOURENCO VITORIANO</h4>
+        </div>
+        <div class="team-member">
+          <i class="fa-solid fa-user-graduate"></i>
+          <h4>BIANCA SOUSA SALES PAIVA</h4>
+        </div>
+        <div class="team-member">
+          <i class="fa-solid fa-user-graduate"></i>
+          <h4>LIZ ALMEIDA DE OLIVEIRA</h4>
+        </div>
+        <div class="team-member">
+          <i class="fa-solid fa-user-graduate"></i>
+          <h4>PEDRO HENRIQUE ALVES DE AZEVEDO</h4>
+        </div>
+        <div class="team-member">
+          <i class="fa-solid fa-user-graduate"></i>
+          <h4>WYLLERSON DE AQUINO CAVENAGHI</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de Perguntas Frequentes (FAQ) com Accordion -->
+    <section class="faq-section">
+      <h2>Perguntas Frequentes</h2>
+      <div class="faq-container">
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Quanto tempo demora para o saldo da recarga cair no cartão?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Pagamentos via PIX são processados instantaneamente. Assim que o pagamento for confirmado, os créditos serão adicionados ao seu cartão em até 5 minutos.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Quais documentos preciso para a renovação da carteirinha?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Você precisará de uma Declaração de Matrícula/Escolaridade atualizada (emitida nos últimos 30 dias) e um Comprovante de Residência recente (dos últimos 90 dias) em seu nome ou no nome dos seus pais/responsáveis.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Meu status de renovação está "Pendente". O que significa?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Significa que recebemos seus documentos e eles estão na fila para análise pela nossa equipe. Você pode verificar o status atual a qualquer momento na sua página de "Meu Perfil".</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Posso alterar meus dados cadastrais, como nome ou CPF?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Você pode alterar dados de contato (como telefone e endereço) na sua página de "Meu Perfil". Dados de identificação (Nome e CPF) não podem ser alterados online por motivos de segurança após o cadastro inicial.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Como consulto o trajeto de um ônibus?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Basta ir à nossa secção "Linhas" no menu principal. Lá, pode clicar na linha que deseja e um mapa com o trajeto simulado será exibido.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Esqueci a minha senha. O que faço?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Na página de Login, clique no link "Esquecu sua senha?". Iremos enviar um email com as instruções para que possa criar uma nova senha de acesso.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  
+  <!-- Rodapé padrão com links de navegação e redes sociais -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-column footer-about">
+        <div class="logo">
+          <i class="fa-solid fa-bus"></i>
+          <span>BusStop</span>
+        </div>
+        <p>Simplificando sua mobilidade urbana. Recarregue, renove e planeje suas rotas, tudo em um só lugar.</p>
+      </div>
+      <div class="footer-column footer-links">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pages/recarga/recarga.html">Recarga</a></li>
+          <li><a href="pages/renovacao/renovacao.html">Renovação</a></li>
+          <li><a href="pages/linhas/linhas.html">Linhas</a></li>
+          <li><a href="pages/termos/termos.html">Termos de Serviço</a></li>
+        </ul>
+      </div>
+      <div class="footer-column footer-social">
+        <h4>Siga-nos</h4>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 BusStop. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Script para funcionalidades globais (Menu, Auth, etc) -->
+  <script src="assets/js/global.js"></script>
+
+  <!-- Script específico para interatividade da FAQ nesta página -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // Implementação da lógica de acordeão para os itens da FAQ
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach(button => {
+        button.addEventListener('click', () => {
+          const answer = button.nextElementSibling;
+          const icon = button.querySelector('i'); 
+          
+          if (answer.classList.contains('show')) {
+              answer.classList.remove('show');
+              icon.classList.remove('open'); 
+          } else {
+              answer.classList.add('show');
+              icon.classList.add('open'); 
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
+<!--  https://busstop-b9ov.onrender.com/ --->
