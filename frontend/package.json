@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
   "scripts": {
     "build": "node set-env.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "dotenv": "^17.2.3"
-  }
+  "license": "ISC"
 }
