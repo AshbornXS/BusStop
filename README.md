@@ -39,6 +39,7 @@ Além disso, o sistema conta com um **Painel Administrativo** robusto para gest�
 * **JWT** (JSON Web Token para autenticação)
 * **Multer & GridFS** (Upload e armazenamento de arquivos no Mongo)
 * **BcryptJS** (Hash de senhas)
+> Para ver o código do hardware dedicado clique [aqui](https://github.com/AshbornXS/BusStop-ESP32/blob/main/src/main.cpp)
 
 ## ⚙️ Pré-requisitos
 
